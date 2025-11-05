@@ -35,6 +35,8 @@ export const CloseButton = styled.button`
   border: none;
   font-size: 2rem;
   cursor: pointer;
+  opacity: 1;
+  color: black;
 `;
 
 export const MenuContent = styled.nav`

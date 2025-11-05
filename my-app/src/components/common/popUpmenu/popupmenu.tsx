@@ -13,7 +13,7 @@ interface IPopupMenuProps {
 }
 
 export const PopupMenu = ({ onClose }: IPopupMenuProps) => {
-  const handleOverlayClick = (e: MouseEvent<HTMLDivElement>) => {
+  const handleOverlayClick = () => {
     onClose();
   };
   const handleMenuClick = (e: MouseEvent<HTMLDivElement>) => {
