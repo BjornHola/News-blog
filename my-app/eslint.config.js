@@ -64,6 +64,12 @@ export default defineConfig([
     rules: {
       ...prettierConfig.rules,
       'prettier/prettier': 'warn',
+      "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
     },
   },
 // Configs
