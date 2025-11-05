@@ -2,11 +2,6 @@ import { useState, type MouseEvent } from "react";
 import { ButtnMenu } from "./button-menu-styles";
 import { PopupMenu } from "../popUpmenu/index-popupmenu";
 
-// interface IButtonMenuProps {
-//   dataState?: "default" | "active";
-//   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
-// }
-
 export function ButtonMenu() {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -32,4 +27,3 @@ export function ButtonMenu() {
     </>
   );
 }
-// здесь только data-state - можно как пропсы в styled components к атрибуту active
