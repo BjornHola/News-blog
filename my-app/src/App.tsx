@@ -6,6 +6,7 @@ import { ButtonSwitch } from "./components/common/Button-switch/button-switch-in
 import { ButtonMenu } from "./components/common/Button-menu/button-menu-index";
 import { Tab } from "./components/common/tabs/tabs";
 import { Title } from "./components/common/Titles/title-index";
+import { Form } from "./forms/index-form";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         onTabChange={(index) => console.log("Active tab:", index)}
       />
       <Title content="Blog" />
+      <Form />
     </Fragment>
   );
 }
