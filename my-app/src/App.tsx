@@ -7,6 +7,7 @@ import { ButtonMenu } from "./components/common/Button-menu/button-menu-index";
 import { Tab } from "./components/common/tabs/tabs";
 import { Title } from "./components/common/Titles/title-index";
 import { Form } from "./forms/index-form";
+import { SearchComponent } from "./components/common/search/index-search";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
       />
       <Title content="Blog" />
       <Form />
+      <SearchComponent />
     </Fragment>
   );
 }
