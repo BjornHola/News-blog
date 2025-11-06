@@ -9,8 +9,6 @@ export const WrapperForInput = styled.div`
   align-items: center;
 
   label {
-    /* color: ${({ theme }) =>
-      theme.mode === "light" ? "black" : "white"}; // => заглушка для темы */
     color: #313037;
     font-size: 16px;
     line-height: normal;
