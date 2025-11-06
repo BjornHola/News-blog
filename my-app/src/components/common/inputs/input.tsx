@@ -1,0 +1,71 @@
+import { type FC, useState, type ChangeEvent, type FocusEvent } from "react";
+import { WrapperForInput } from "./input-styles";
+
+type InputState = "default" | "focus" | "filled" | "disabled" | "error";
+type InputTypes = "text" | "email" | "password";
+
+interface IInputProps {
+  label: string;
+  dataState: InputState;
+  placeholder?: string;
+  value?: string;
+  type: InputTypes;
+  id?: string | number;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
+}
+
+export const Input: FC<IInputProps> = ({
+  label,
+  dataState,
+  placeholder,
+  value = "",
+  type,
+  id,
+  onChange,
+  onBlur,
+}) => {
+  const [isFocused, setFocus] = useState(false);
+  const handleWIthFocus = () => {
+    setFocus((isFocused) => !isFocused);
+  };
+
+  const handleWithBlur = (e: FocusEvent<HTMLInputElement>) => {
+    setFocus(false);
+    onBlur?.(e);
+  };
+  const isError = dataState === "error";
+  const isDisabled = dataState === "disabled";
+  const isFilled = dataState === "filled";
+
+  const defineState = (): InputState => {
+    if (isError) {
+      return "error";
+    } else if (isDisabled) {
+      return "disabled";
+    } else if (isFocused) {
+      return "focus";
+    } else if (isFilled || (value && value.length > 0)) {
+      return "filled";
+    } else return "default";
+  };
+
+  const currentState = defineState();
+
+  return (
+    <WrapperForInput>
+      <label> {label} </label>
+      <input
+        type={type}
+        placeholder={placeholder}
+        id={id?.toString()}
+        value={value}
+        onFocus={handleWIthFocus}
+        onBlur={handleWithBlur}
+        name={`${currentState}`}
+        data-state={defineState()}
+        onChange={onChange}
+      ></input>
+    </WrapperForInput>
+  );
+};
