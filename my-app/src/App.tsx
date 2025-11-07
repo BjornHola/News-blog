@@ -1,6 +1,7 @@
 import { Fragment } from "react/jsx-runtime";
 import "./App.css";
-import { Header } from "./layout/header/index-header";
+// import { Header } from "./layout/header/index-header";
+import { Footer } from "./layout/footer/index-footer";
 
 // import { Button } from "./components/common/Buttons/button-index";
 // import { ButtonAccount } from "./components/common/Buttons-Account/index-button-account";
@@ -15,8 +16,8 @@ import { Header } from "./layout/header/index-header";
 function App() {
   return (
     <Fragment>
-      <Header isAuth />
-
+      {/* <Header isAuth /> */}
+      <Footer />
       {/* <ButtonAccount label="Artem Malkin" type="button" onClick={() => console.log("Hello")} />
       <Button
         onClick={() => console.log("Hello")}

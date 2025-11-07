@@ -4,7 +4,7 @@ import { TitleForSwitch, StyledButtonSwitch, SwitchWrapper } from "./button-swit
 interface IButtonSwitchProps {
   role: string;
   label: string;
-  ariaChecked: boolean | "true" | "false";
+  ariaChecked?: boolean | "true" | "false";
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   children?: React.ReactNode;
 }
