@@ -16,11 +16,12 @@
 
 body {
   margin: 0;
+  padding: 0;
   display: flex;
   place-items: center;
+  width: 100vw;
   min-width: 320px;
-  min-height: 100vh;
   box-sizing: border-box;
-  font-family: 'Inter', Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
   overflow-x: hidden;
 }

@@ -1,6 +1,7 @@
 import { useState, type ChangeEvent, type FC } from "react";
 import { SearchForm } from "./search-form";
 import { SearchButton } from "./search-icon";
+import { StyledButtonClose } from "./search-component-styles";
 
 export const SearchComponent: FC = () => {
   const [isActive, setIsActive] = useState(false);
@@ -21,7 +22,7 @@ export const SearchComponent: FC = () => {
             value={searchValue}
             onChange={onSearchChange}
           />
-          <button onClick={() => setIsActive(false)}>✕</button>
+          <StyledButtonClose onClick={() => setIsActive(false)}>x</StyledButtonClose>
         </>
       ) : (
         <SearchButton onClick={() => setIsActive(true)} />

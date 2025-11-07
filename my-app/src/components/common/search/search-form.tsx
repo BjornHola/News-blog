@@ -1,4 +1,5 @@
 import { type ChangeEvent, type FC } from "react";
+import { InputForSearch } from "./search-form-styles";
 
 interface ISearchFormProps {
   placeholder: string;
@@ -16,6 +17,12 @@ export const SearchForm: FC<ISearchFormProps> = ({
   onChange,
 }) => {
   return (
-    <input placeholder={placeholder} type={type} name={name} value={value} onChange={onChange} />
+    <InputForSearch
+      placeholder={placeholder}
+      type={type}
+      name={name}
+      value={value}
+      onChange={onChange}
+    />
   );
 };
