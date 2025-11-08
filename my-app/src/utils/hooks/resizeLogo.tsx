@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 
-export function useIsMobile(breakpoint: number = 768): boolean {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
+export function useLogoMobile(breakpoint: number = 768): boolean {
+  const [isLogoMobile, setIsLogoMobile] = useState(window.innerWidth < breakpoint);
 
   useEffect(() => {
     function handleResize() {
-      setIsMobile(window.innerWidth < breakpoint);
+      setIsLogoMobile(window.innerWidth < breakpoint);
     }
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [breakpoint]);
-  return isMobile;
+  return isLogoMobile;
 }

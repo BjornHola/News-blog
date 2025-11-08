@@ -5,12 +5,14 @@ type InputState = "default" | "focus" | "filled" | "disabled" | "error";
 type InputTypes = "text" | "email" | "password";
 
 interface IInputProps {
-  label: string;
+  label?: string;
   dataState: InputState;
   placeholder?: string;
   value?: string;
   type: InputTypes;
-  id?: string | number;
+  id?: "Username" | "Email" | "Password";
+  form?: string;
+  autocomplete: "Username" | "Email" | "Password" | "on" | "off";
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
 }
@@ -22,6 +24,8 @@ export const Input: FC<IInputProps> = ({
   value = "",
   type,
   id,
+  form,
+  autocomplete,
   onChange,
   onBlur,
 }) => {
@@ -52,14 +56,18 @@ export const Input: FC<IInputProps> = ({
 
   const currentState = defineState();
 
+  const inputId = id || (label ? label.replace(/\s+/g, "_") : undefined);
+
   return (
     <WrapperForInput>
-      <label> {label} </label>
+      <label htmlFor={inputId}> {label} </label>
       <input
+        autoComplete={autocomplete}
         type={type}
         placeholder={placeholder}
-        id={id?.toString()}
+        id={inputId}
         value={value}
+        form={form}
         onFocus={handleWIthFocus}
         onBlur={handleWithBlur}
         name={`${currentState}`}

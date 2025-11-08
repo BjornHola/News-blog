@@ -1,17 +1,26 @@
 import { Fragment } from "react/jsx-runtime";
 import "./App.css";
-import { Button } from "./components/common/Buttons/button-index";
-import { ButtonAccount } from "./components/common/Buttons-Account/index-button-account";
-import { ButtonSwitch } from "./components/common/Button-switch/button-switch-index";
-import { ButtonMenu } from "./components/common/Button-menu/button-menu-index";
-import { Tab } from "./components/common/tabs/tabs";
-import { Title } from "./components/common/Titles/title-index";
-import { Form } from "./forms/index-form";
+import { SignInPage } from "./pages/index-signIn";
+// import { Header } from "./layout/header/index-header";
+// import { Footer } from "./layout/footer/index-footer";
+
+// import { Button } from "./components/common/Buttons/button-index";
+// import { ButtonAccount } from "./components/common/Buttons-Account/index-button-account";
+// import { ButtonSwitch } from "./components/common/Button-switch/button-switch-index";
+// import { ButtonMenu } from "./components/common/Button-menu/button-menu-index";
+// import { Tab } from "./components/common/tabs/tabs";
+// import { Title } from "./components/common/Titles/title-index";
+// import { Form } from "./forms/index-form";
+// import { SearchComponent } from "./components/common/search/index-search";
+// import { Logo } from "./components/common/Blogologo/logo-index";
 
 function App() {
   return (
     <Fragment>
-      <ButtonAccount label="Artem Malkin" type="button" onClick={() => console.log("Hello")} />
+      <SignInPage />
+      {/* <Header isAuth /> */}
+      {/* <Footer /> */}
+      {/* <ButtonAccount label="Artem Malkin" type="button" onClick={() => console.log("Hello")} />
       <Button
         onClick={() => console.log("Hello")}
         label="Primary"
@@ -37,6 +46,8 @@ function App() {
       />
       <Title content="Blog" />
       <Form />
+      <SearchComponent />
+      <Logo /> */}
     </Fragment>
   );
 }

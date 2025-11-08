@@ -10,7 +10,7 @@ interface IButtonAccountProps {
 }
 
 export const ButtonAccount: FC<IButtonAccountProps> = ({ label, onClick }) => {
-  const isMobile = useIsMobile(767);
+  const isMobile = useIsMobile(768);
   if (!label) return "defaultUser";
   function getUserName(label: string) {
     const initials: string = label

@@ -3,7 +3,7 @@ import { StyledForm, StyledLink, TextUnderForm, StyledText, ResetLink } from "./
 import { Input } from "../components/common/inputs/index-input";
 import { Button } from "../components/common/Buttons/button-index";
 
-export const Form: FC = () => {
+export const Form: FC<{ autocomplete: "on" | "off" }> = ({ autocomplete }) => {
   const setIdForm: () => string = () => {
     return Math.floor(Math.random() * 6000).toString();
   };
@@ -84,33 +84,51 @@ export const Form: FC = () => {
   };
 
   return (
-    <StyledForm action="" method="post" id={idForm} onSubmit={handleWithSubmit}>
+    <StyledForm
+      action=""
+      method="post"
+      id={idForm}
+      onSubmit={handleWithSubmit}
+      autoComplete={autocomplete}
+    >
+      <label htmlFor="Username">Username</label>
       <Input
         label="Username"
         placeholder="Enter your name"
         type="text"
         value={username}
+        form={idForm}
+        id="Username"
+        autocomplete="off"
         onChange={handleWithUsername}
         onBlur={handleWithBlurOnUsername}
         dataState={usernameWasInFocus && usernameError ? "error" : "default"}
       />
       {usernameWasInFocus && usernameError && <p style={{ color: "red" }}>{usernameError}</p>}
+      <label htmlFor="Email">Email</label>
       <Input
         label="Email"
         dataState={emailWasInFocus && emailError ? "error" : "default"}
         placeholder="Enter your email"
         type="email"
         value={email}
+        form={idForm}
+        id="Email"
+        autocomplete="off"
         onChange={handleWithEmail}
         onBlur={handleWithBlurOnEmail}
       />
       {emailWasInFocus && emailError && <p style={{ color: "red" }}>{emailError}</p>}
+      <label htmlFor="Password">Password</label>
       <Input
         label="Password"
         dataState={passwordWasInFocus && passwordError ? "error" : "default"}
         placeholder="Enter your password"
         type="password"
         value={password}
+        form={idForm}
+        id="Password"
+        autocomplete="off"
         onChange={handleWithPassword}
         onBlur={handleWithBlurOnPassword}
       />
