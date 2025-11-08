@@ -1,6 +1,6 @@
 import { type FC } from "react";
 import { LogoWrapper, WrapperForLogo } from "./logo-styles";
-import { useLogoMobile } from "../../../utils/helpers/resizeLogo";
+import { useLogoMobile } from "../../../utils/hooks/resizeLogo";
 
 export const Logo: FC = () => {
   const isLogoMobile = useLogoMobile();

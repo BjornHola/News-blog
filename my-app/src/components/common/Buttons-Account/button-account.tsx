@@ -1,6 +1,6 @@
 import type { FC, MouseEvent } from "react";
 import { ButtonAccountNamed, ButtonAccountNamedMobile } from "./button-account-styles";
-import { useIsMobile } from "../../../utils/helpers/resizeWindow";
+import { useIsMobile } from "../../../utils/hooks/resizeWindow";
 
 interface IButtonAccountProps {
   type?: "submit" | "button" | "reset";

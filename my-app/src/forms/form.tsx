@@ -84,7 +84,13 @@ export const Form: FC<{ autocomplete: "on" | "off" }> = ({ autocomplete }) => {
   };
 
   return (
-    <StyledForm action="" method="post" id={idForm} onSubmit={handleWithSubmit} autoComplete="off">
+    <StyledForm
+      action=""
+      method="post"
+      id={idForm}
+      onSubmit={handleWithSubmit}
+      autoComplete={autocomplete}
+    >
       <label htmlFor="Username">Username</label>
       <Input
         label="Username"

@@ -62,7 +62,7 @@ export const Input: FC<IInputProps> = ({
     <WrapperForInput>
       <label htmlFor={inputId}> {label} </label>
       <input
-        autoComplete="off"
+        autoComplete={autocomplete}
         type={type}
         placeholder={placeholder}
         id={inputId}
