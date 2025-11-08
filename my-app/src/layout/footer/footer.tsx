@@ -12,3 +12,4 @@ export function Footer() {
     </StyledFooter>
   );
 }
+// onClick => toggle + theme + aria + adaptive responsive

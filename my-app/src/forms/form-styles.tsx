@@ -9,7 +9,13 @@ export const StyledForm = styled.form`
   align-items: center;
   max-width: 500px;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (min-width: 320px) and (max-width: 768px) {
+    width: 270px;
+    margin: 20px auto;
+    padding: 0 10px;
+  }
+
+  @media screen and (max-width: 769px) {
     width: 90%;
     margin: 20px auto;
     padding: 0 10px;

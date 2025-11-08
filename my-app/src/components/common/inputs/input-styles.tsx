@@ -27,6 +27,10 @@ export const WrapperForInput = styled.div`
     padding: 8px;
     border: 1px solid #ccc;
     transition: all 0.2s ease;
+
+    @media screen and (min-width: 320px) and (max-width: 768px) {
+      width: 230px;
+    }
   }
 
   input[data-state="focus"] {

@@ -15,10 +15,13 @@ export const ButtonSwitch: FC<IButtonSwitchProps> = ({
   ariaChecked,
   onClick,
 }) => {
+  const handleClickMode = (e: MouseEvent<HTMLButtonElement>) => {
+    onClick?.(e);
+  };
   return (
     <SwitchWrapper>
       <TitleForSwitch>Dark mode</TitleForSwitch>
-      <StyledButtonSwitch role={role} aria-checked={ariaChecked} onClick={onClick}>
+      <StyledButtonSwitch role={role} aria-checked={ariaChecked} onClick={handleClickMode}>
         {label}
       </StyledButtonSwitch>
     </SwitchWrapper>

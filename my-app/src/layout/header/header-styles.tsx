@@ -13,13 +13,21 @@ export const WrapperForHeader = styled.header`
   overflow: hidden;
   height: auto;
   min-height: 90px;
+
+  @media screen and (max-width: 768px) {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  @media screen and (min-width: 769px) {
+  }
 `;
 
 export const HeaderLeftContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 0 1rem;
-  background: #ffffff; //
+  background: #ffffff;
   color: #161010;
   max-height: 90px;
 `;

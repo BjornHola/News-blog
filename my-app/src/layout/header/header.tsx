@@ -27,3 +27,4 @@ export const Header: FC<IHeaderProps> = ({ isAuth }) => {
     </WrapperForHeader>
   );
 };
+//onClick
