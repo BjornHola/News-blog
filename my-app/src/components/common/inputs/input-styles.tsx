@@ -9,7 +9,7 @@ export const WrapperForInput = styled.div`
   align-items: center;
 
   label {
-    color: #313037;
+    color: ${({ theme }) => (theme.mode === "dark" ? "#c4b7b7e1" : "#313037")};
     font-size: 16px;
     line-height: normal;
     font-weight: bold;
@@ -19,8 +19,8 @@ export const WrapperForInput = styled.div`
   input {
     width: 300px;
     height: 40px;
-    background-color: rgb(255, 255, 255);
-    color: #454242;
+    background: ${({ theme }) => (theme.mode === "dark" ? "#827b7b33" : "rgb(255, 255, 255)")};
+    color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 400;

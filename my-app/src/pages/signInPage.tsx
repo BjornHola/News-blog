@@ -15,7 +15,7 @@ export const SignInPage = () => {
     <WrapperForSignIn>
       <WrapperForContent>
         <WrapperForHeader>
-          <Header isAuth={true} />;
+          <Header isAuth={true} />
         </WrapperForHeader>
         <WrapperForButton>
           <Button

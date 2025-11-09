@@ -56,11 +56,14 @@ export const Input: FC<IInputProps> = ({
 
   const currentState = defineState();
 
-  const inputId = id || (label ? label.replace(/\s+/g, "_") : undefined);
+  const labelText =
+    label || (id ? id.charAt(0).toUpperCase() + id.slice(1) : placeholder ? placeholder : "Field");
+
+  const inputId = id || labelText.replace(/\s+/g, "_");
 
   return (
     <WrapperForInput>
-      <label htmlFor={inputId}> {label} </label>
+      <label htmlFor={inputId}> {labelText} </label>
       <input
         autoComplete={autocomplete}
         type={type}

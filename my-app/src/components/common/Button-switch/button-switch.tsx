@@ -1,5 +1,6 @@
-import { type FC, type MouseEvent } from "react";
+import { useContext, type FC, type MouseEvent } from "react";
 import { TitleForSwitch, StyledButtonSwitch, SwitchWrapper } from "./button-switch-styles";
+import { ThemeContext } from "../../../context";
 
 interface IButtonSwitchProps {
   role: string;
@@ -9,19 +10,25 @@ interface IButtonSwitchProps {
   children?: React.ReactNode;
 }
 
-export const ButtonSwitch: FC<IButtonSwitchProps> = ({
-  role = "switch",
-  label = "Off/On",
-  ariaChecked,
-  onClick,
-}) => {
-  const handleClickMode = (e: MouseEvent<HTMLButtonElement>) => {
-    onClick?.(e);
+export const ButtonSwitch: FC<IButtonSwitchProps> = ({ role = "switch", label = "Off/On" }) => {
+  const themeContext = useContext(ThemeContext);
+  if (!themeContext) return null;
+  const { theme, setTheme } = themeContext;
+
+  const toggleTheme = () => {
+    setTheme({
+      mode: theme.mode === "light" ? "dark" : "light",
+    });
   };
+
   return (
     <SwitchWrapper>
       <TitleForSwitch>Dark mode</TitleForSwitch>
-      <StyledButtonSwitch role={role} aria-checked={ariaChecked} onClick={handleClickMode}>
+      <StyledButtonSwitch
+        role={role}
+        aria-checked={theme.mode === "dark" ? "true" : "false"}
+        onClick={toggleTheme}
+      >
         {label}
       </StyledButtonSwitch>
     </SwitchWrapper>

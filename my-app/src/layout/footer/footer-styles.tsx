@@ -9,8 +9,8 @@ export const StyledFooter = styled.footer`
   align-items: center;
   gap: 10px;
   width: 100%;
-  background-color: #b9b2b250;
-  color: #8d8e97;
+  background: ${({ theme }) => (theme.mode === "dark" ? "#504d4d33" : "#b9b2b250")};
+  color: ${({ theme }) => (theme.mode === "dark" ? "#a5a6a9ca" : "#8d8e97")};
 
   /* @media screen and (min-width: 320px) and (max-width: 768px) {
     flex-direction: column;
@@ -23,7 +23,6 @@ export const StyledFooter = styled.footer`
   } */
 `;
 export const YearParagraph = styled.p`
-  color: #8d8e97;
   font-family: "Inter";
   font-weight: 400;
   font-size: 16px;
@@ -43,6 +42,10 @@ export const YearParagraph = styled.p`
 
 export const ThemeButtonSection = styled.div`
   padding: 0 30px 0 0;
+
+  & h5 {
+    color: inherit;
+  }
 
   /* @media screen and (max-width: 600px) {
     padding-left: 6px;

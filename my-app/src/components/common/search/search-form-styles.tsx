@@ -8,8 +8,8 @@ export const InputForSearch = styled.input`
   border: none;
   font-size: 13px;
   font-family: "Inter", sans-serif;
-  color: #333;
-  background-color: #f7f2f2;
+  background: ${({ theme }) => (theme.mode === "dark" ? "#8d878715" : "#f7f2f2")};
+  color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#333")};
   transition: all 0.3s ease;
 
   &:focus {
