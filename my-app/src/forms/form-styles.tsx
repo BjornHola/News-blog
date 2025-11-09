@@ -1,13 +1,16 @@
 import styled from "styled-components";
 
 export const StyledForm = styled.form`
-  margin: 20px auto;
-  padding: 0;
+  margin: 50px auto 0;
+  padding: 50px 45px 0;
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: center;
   max-width: 500px;
+  background: ${({ theme }) => (theme.mode === "dark" ? "#504d4d33" : "rgb(255, 255, 255)")};
+  color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
+  flex: 1;
 
   @media screen and (min-width: 320px) and (max-width: 768px) {
     width: 270px;

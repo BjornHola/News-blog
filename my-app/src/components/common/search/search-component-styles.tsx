@@ -7,8 +7,8 @@ export const StyledButtonClose = styled.button`
   border: 1px solid rgba(193, 193, 205, 0.1);
   border-radius: 4px;
   box-shadow: 0 0 3px rgba(127, 127, 179, 0.381);
-  background-color: rgba(77, 77, 135, 0.374);
-  color: rgba(66, 66, 148, 0.915);
+  background: ${({ theme }) => (theme.mode === "dark" ? "#55287c7e" : "rgba(77, 77, 135, 0.374)")};
+  color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "rgba(66, 66, 148, 0.915)")};
   transition: all 0.3s ease;
   margin: 20px auto;
   padding: 0.25em 0.5em;

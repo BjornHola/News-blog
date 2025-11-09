@@ -8,6 +8,7 @@ export const SearchIconWrapper = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  color: ${({ theme }) => (theme.mode === "dark" ? "#aca6a6" : "#56565bd9")};
 
   &:focus {
     outline: none;

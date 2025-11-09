@@ -1,6 +1,7 @@
 import { Fragment } from "react/jsx-runtime";
 import "./App.css";
 import { SignInPage } from "./pages/index-signIn";
+import { ThemeProvider } from "./context";
 // import { Header } from "./layout/header/index-header";
 // import { Footer } from "./layout/footer/index-footer";
 
@@ -16,11 +17,12 @@ import { SignInPage } from "./pages/index-signIn";
 
 function App() {
   return (
-    <Fragment>
-      <SignInPage />
-      {/* <Header isAuth /> */}
-      {/* <Footer /> */}
-      {/* <ButtonAccount label="Artem Malkin" type="button" onClick={() => console.log("Hello")} />
+    <ThemeProvider>
+      <Fragment>
+        <SignInPage />
+        {/* <Header isAuth /> */}
+        {/* <Footer /> */}
+        {/* <ButtonAccount label="Artem Malkin" type="button" onClick={() => console.log("Hello")} />
       <Button
         onClick={() => console.log("Hello")}
         label="Primary"
@@ -48,7 +50,8 @@ function App() {
       <Form />
       <SearchComponent />
       <Logo /> */}
-    </Fragment>
+      </Fragment>
+    </ThemeProvider>
   );
 }
 

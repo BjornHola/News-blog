@@ -6,7 +6,8 @@ export const WrapperForHeader = styled.header`
   justify-content: space-between;
   padding: 20px 30px;
   align-items: center;
-  background-color: #ffffff;
+  background: ${({ theme }) => (theme.mode === "dark" ? "#504d4d33" : "rgb(255, 255, 255)")};
+  color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
   box-sizing: border-box;
   color: #161010;
   position: relative;
@@ -27,9 +28,10 @@ export const HeaderLeftContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 0 1rem;
-  background: #ffffff;
-  color: #161010;
+  background: none;
+  color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
   max-height: 90px;
+  border: none;
 `;
 
 export const HeaderRightContainer = styled.div`
@@ -37,4 +39,7 @@ export const HeaderRightContainer = styled.div`
   align-items: center;
   gap: 16px;
   max-height: 90px;
+  background: none;
+  color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
+  border: none;
 `;

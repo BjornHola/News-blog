@@ -2,18 +2,21 @@ import styled from "styled-components";
 
 export const WrapperForSignIn = styled.div`
   width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
+  color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
 
   @media screen and (max-width: 768px) {
     max-width: 600px;
   }
 
   hr {
-    color: #685f5f;
+    color: ${({ theme }) => (theme.mode === "dark" ? "#272525" : "#5e5959")};
     width: 100%;
   }
 
@@ -25,10 +28,15 @@ export const WrapperForSignIn = styled.div`
 `;
 
 export const WrapperForContent = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  flex: 1;
   margin: 0 auto;
   box-sizing: border-box;
   padding: 0 16px;
+  background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
+  color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
 
   /* @media screen and (max-width: 768px) {
     max-width: 480px;
@@ -46,7 +54,8 @@ export const WrapperForHeader = styled.div`
   justify-content: space-between;
   padding: 20px 0;
   align-items: center;
-  background-color: #fff;
+  background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
+  color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
   box-sizing: border-box;
   min-height: 90px;
 
@@ -62,6 +71,10 @@ export const WrapperForButton = styled.div`
   width: 100%;
   justify-content: flex-start;
   align-items: flex-start;
+  background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
+  color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
+  padding-top: 50px;
+  margin-top: 50px;
 
   /* @media (max-width: 600px) {
     padding: 12px 6px;
@@ -70,5 +83,9 @@ export const WrapperForButton = styled.div`
 
   & button {
     margin: 0;
+    font-size: 15px;
+    border: none;
+    background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
+    color: ${({ theme }) => (theme.mode === "dark" ? "#a39b9bc0" : "#484242e7")};
   }
 `;
