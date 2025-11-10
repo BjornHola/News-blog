@@ -85,4 +85,9 @@ export const ButtonAccountNamedMobile = styled.button`
     outline: 1px solid #4006ab;
     outline-offset: 1px;
   }
+
+  @media screen and (min-width: 1200px) {
+    flex-shrink: 1;
+    min-width: 0;
+  }
 `;

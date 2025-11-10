@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const StyledForm = styled.form`
   margin: 50px auto 0;
-  padding: 50px 45px 0;
+  padding: 50px 120px 0;
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: center;
   max-width: 500px;
-  background: ${({ theme }) => (theme.mode === "dark" ? "#504d4d33" : "rgb(255, 255, 255)")};
+  background: ${({ theme }) => (theme.mode === "dark" ? "#504d4d33" : "#b9b2b250")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
   flex: 1;
 

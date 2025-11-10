@@ -26,4 +26,8 @@ export const AuthenticationButton = styled.button`
     cursor: not-allowed;
     opacity: 0.6;
   }
+  @media screen and (min-width: 1200px) {
+    flex-shrink: 1;
+    min-width: 0;
+  }
 `;
