@@ -1,7 +1,9 @@
 import { Fragment } from "react/jsx-runtime";
 import "./App.css";
-import { SignInPage } from "./pages/index-signIn";
+
 import { ThemeProvider } from "./context";
+import { SignUpPage } from "./pages/signUp/index-signUp";
+// import { SignInPage } from "./pages/signIn/index-signIn";
 // import { Header } from "./layout/header/index-header";
 // import { Footer } from "./layout/footer/index-footer";
 
@@ -19,7 +21,8 @@ function App() {
   return (
     <ThemeProvider>
       <Fragment>
-        <SignInPage />
+        <SignUpPage />
+        {/* <SignInPage /> */}
         {/* <Header isAuth /> */}
         {/* <Footer /> */}
         {/* <ButtonAccount label="Artem Malkin" type="button" onClick={() => console.log("Hello")} />

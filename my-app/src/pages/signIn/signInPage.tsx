@@ -1,8 +1,8 @@
-import { Button } from "../components/common/Buttons/button-index";
-import { Title } from "../components/common/Titles/title-index";
-import { Form } from "../forms/index-form";
-import { Footer } from "../layout/footer/index-footer";
-import { Header } from "../layout/header/index-header";
+import { Button } from "../../components/common/Buttons/button-index";
+import { Title } from "../../components/common/Titles/title-index";
+import { Form } from "../../forms/index-form";
+import { Footer } from "../../layout/footer/index-footer";
+import { Header } from "../../layout/header/index-header";
 import {
   WrapperForButton,
   WrapperForSignIn,
