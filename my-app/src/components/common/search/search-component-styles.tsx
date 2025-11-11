@@ -36,3 +36,34 @@ export const StyledButtonClose = styled.button`
     border: none;
   }
 `;
+
+export const StyledOverlay = styled.div`
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 120;
+  background: rgba(0, 0, 0, 0.8);
+
+  & input {
+    width: 290px;
+    height: 40px;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    background: #bbb7b733;
+    color: #f7eded;
+  }
+
+  & input:focus {
+    border: 3px solid #6067b4;
+    outline: 1px solid #c4c5d0;
+    box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
+  }
+`;
