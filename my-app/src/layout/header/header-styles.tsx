@@ -12,10 +12,9 @@ export const WrapperForHeader = styled.header`
   overflow-x: hidden;
   height: auto;
   min-height: 90px;
-  border: 2px solid red; //
 
   @media screen and (max-width: 768px) {
-    max-width: 100%;
+    width: 100%;
     margin: 0 auto;
     padding: 10px 0;
     justify-content: space-around;
@@ -34,6 +33,7 @@ export const WrapperForHeader = styled.header`
 export const HeaderLeftContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 0 1rem;
   background: none;
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
@@ -41,7 +41,6 @@ export const HeaderLeftContainer = styled.div`
   border: none;
   flex: 0 1 auto;
   min-width: 0;
-  border: 2px solid red; //
 
   @media screen and (max-width: 768px) {
     padding: 0 10px;
@@ -68,8 +67,6 @@ export const HeaderRightContainer = styled.div`
   padding-right: 20px;
   flex: 0 1 auto;
   min-width: 0;
-  border: 2px solid red; //
-  /* padding-right: clamp(20px, 5vw, 60px); */
 
   @media screen and (max-width: 768px) {
     margin: 0 10px;

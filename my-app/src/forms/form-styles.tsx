@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledForm = styled.form`
   margin: 50px auto 0;
-  padding: 50px 120px 0;
+  padding: 50px 130px 0;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -18,10 +18,10 @@ export const StyledForm = styled.form`
     padding: 0 10px;
   }
 
-  @media screen and (max-width: 769px) {
-    width: 90%;
+  @media screen and (max-width: 1200px) {
+    width: 90vw;
     margin: 20px auto;
-    padding: 0 10px;
+    padding: 15px 10px;
   }
 `;
 

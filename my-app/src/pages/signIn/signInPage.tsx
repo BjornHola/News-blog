@@ -3,20 +3,13 @@ import { Title } from "../../components/common/Titles/title-index";
 import { Form } from "../../forms/index-form";
 import { Footer } from "../../layout/footer/index-footer";
 import { Header } from "../../layout/header/index-header";
-import {
-  WrapperForButton,
-  WrapperForSignIn,
-  WrapperForHeader,
-  WrapperForContent,
-} from "./signInPage-styles";
+import { WrapperForButton, WrapperForSignIn, WrapperForContent } from "./signInPage-styles";
 
 export const SignInPage = () => {
   return (
     <WrapperForSignIn>
       <WrapperForContent>
-        <WrapperForHeader>
-          <Header isAuth={true} />
-        </WrapperForHeader>
+        <Header isAuth={true} />
         <WrapperForButton>
           <Button
             variant="secondary"

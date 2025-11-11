@@ -8,12 +8,9 @@ export const WrapperForSignUp = styled.div`
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  overflow-x: hidden;
   background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
-  border: 2px solid red; //
-
-  @media screen and (max-width: 768px) {
-  }
 
   hr {
     color: ${({ theme }) => (theme.mode === "dark" ? "#272525" : "#5e5959")};
@@ -29,21 +26,22 @@ export const WrapperForSignUp = styled.div`
 
 export const WrapperForContent = styled.div`
   display: flex;
+  width: 100%;
+  max-width: 2000px;
   flex-direction: column;
+  align-items: center;
   flex: 1 0 auto;
   margin: 0 auto;
   box-sizing: border-box;
-  padding: 0 16px;
   background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
-  border: 2px solid red; //
 
   @media screen and (max-width: 768px) {
     padding: 0;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1200px) {
-    padding: 0;
+    align-items: center;
   }
 `;
 
@@ -51,12 +49,17 @@ export const WrapperForButton = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  justify-content: flex-start;
+  max-width: 1500px;
   align-items: flex-start;
   background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
-  padding-top: 50px;
-  margin-top: 50px;
+  padding-top: 100px;
+  padding-bottom: 50px;
+
+  @media screen and (max-width: 768px) {
+    padding-top: 80px;
+    padding-bottom: 40px;
+  }
 
   & button {
     margin: 0;
