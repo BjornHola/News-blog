@@ -91,7 +91,6 @@ export const Form: FC<{ autocomplete: "on" | "off" }> = ({ autocomplete }) => {
       onSubmit={handleWithSubmit}
       autoComplete={autocomplete}
     >
-      {/* <label htmlFor="Username">Username</label> */}
       <Input
         placeholder="Enter your name"
         type="text"
@@ -103,8 +102,10 @@ export const Form: FC<{ autocomplete: "on" | "off" }> = ({ autocomplete }) => {
         onBlur={handleWithBlurOnUsername}
         dataState={usernameWasInFocus && usernameError ? "error" : "default"}
       />
-      {usernameWasInFocus && usernameError && <p style={{ color: "red" }}>{usernameError}</p>}
-      {/* <label htmlFor="Email">Email</label> */}
+      {usernameWasInFocus && usernameError && (
+        <p style={{ color: "red", textAlign: "center" }}>{usernameError}</p>
+      )}
+
       <Input
         dataState={emailWasInFocus && emailError ? "error" : "default"}
         placeholder="Enter your email"
@@ -117,7 +118,7 @@ export const Form: FC<{ autocomplete: "on" | "off" }> = ({ autocomplete }) => {
         onBlur={handleWithBlurOnEmail}
       />
       {emailWasInFocus && emailError && <p style={{ color: "red" }}>{emailError}</p>}
-      {/* <label htmlFor="Password">Password</label> */}
+
       <Input
         dataState={passwordWasInFocus && passwordError ? "error" : "default"}
         placeholder="Enter your password"
