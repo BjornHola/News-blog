@@ -10,9 +10,10 @@ interface IStyledTabProps {
 export const ButtonContainer = styled.div`
   display: flex;
   gap: 15px;
-  justify-content: center;
+  justify-content: flex-start;
   margin: 20px auto;
   padding: 20px;
+  border: 2px solid green; //
 `;
 
 export const ButtonTab = styled.button<IStyledTabProps>`
