@@ -12,9 +12,11 @@ export const AuthenticationButton = styled.button`
   cursor: pointer;
   transition: all 0.3s ease;
 
-  &:hover {
-    background-color: #a3a3b9;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  @media screen and (min-width: 1200px) {
+    &:hover {
+      background-color: #a3a3b9;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
   }
 
   &:active {

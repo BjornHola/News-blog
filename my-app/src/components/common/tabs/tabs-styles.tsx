@@ -8,12 +8,22 @@ interface IStyledTabProps {
 }
 
 export const ButtonContainer = styled.div`
+  max-width: 600px;
   display: flex;
   gap: 15px;
   justify-content: flex-start;
   margin: 20px auto;
   padding: 20px;
   border: 2px solid green; //
+  background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
+  color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
+
+  @media screen and (min-width: 320px) and (max-width: 768px) {
+    max-width: 200px;
+  }
+  @media screen and (min-width: 769px) and (max-width: 1200px) {
+    max-width: 400px;
+  }
 `;
 
 export const ButtonTab = styled.button<IStyledTabProps>`
@@ -23,24 +33,27 @@ export const ButtonTab = styled.button<IStyledTabProps>`
   padding: 20px;
   font-size: 15px;
   border: none;
-  border-bottom: ${({ $isActive }) => ($isActive ? "2px solid #050606" : "2px solid transparent")};
-  color: ${({ $isActive, $state, disabled }) => {
+  border-bottom: ${({ $isActive }) => ($isActive ? "2px solid #4d4d50" : "2px solid transparent")};
+  background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
+  color: ${({ $isActive, $state, disabled, theme }) => {
     switch (true) {
       case disabled:
-        return "#6b6a6e4d";
+        return theme.mode === "dark" ? "#fff" : "#6b6a6e4d";
       case $isActive:
-        return "#313037";
+        return theme.mode === "dark" ? "#fff" : "#313037";
       case $state === "hover":
-        return "#6C1BDB";
+        return theme.mode === "dark" ? "#7b79c0" : "#6C1BDB";
       case $state === "default":
-        return "#313037";
+        return theme.mode === "dark" ? "#fff" : "#313037";
       default:
-        return "rgba(0, 0, 0, 0.866)";
+        return "rgba(42, 40, 40, 0.147)";
     }
   }};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
-  &:hover {
-    color: ${({ disabled }) => (!disabled ? "#9b9bab" : undefined)};
+  @media screen and (min-width: 1200px) {
+    &:hover {
+      color: ${({ disabled }) => (!disabled ? "#9b9bab" : undefined)};
+    }
   }
 `;

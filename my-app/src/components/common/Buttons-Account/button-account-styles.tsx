@@ -35,8 +35,8 @@ export const ButtonAccountNamed = styled.button`
     justify-content: center;
     width: 120px;
     height: 50px;
-    background-color: rgb(255, 255, 255);
-    color: rgba(49, 48, 55, 1);
+    background-color: rgba(108, 27, 219, 1);
+    color: rgb(255, 255, 255);
     font-family: "Inter";
     font-weight: bold;
     font-size: 15px;
@@ -44,9 +44,17 @@ export const ButtonAccountNamed = styled.button`
     text-align: center;
   }
 
-  &:hover {
-    box-shadow: 0 3px 3px #4006ab;
+  @media screen and (min-width: 1024px) {
+    &:hover {
+      box-shadow: 0 3px 3px #4006ab;
+    }
+
+    &:focus {
+      outline: 2px solid black;
+      outline-offset: 2px;
+    }
   }
+
   &:active {
     outline: 1px solid #4006ab;
     outline-offset: 1px;
@@ -55,11 +63,6 @@ export const ButtonAccountNamed = styled.button`
     cursor: not-allowed;
     background-color: #717079;
   }
-
-  &:focus {
-    outline: 2px solid black;
-    outline-offset: 2px;
-  }
 `;
 
 export const ButtonAccountNamedMobile = styled.button`
@@ -67,7 +70,7 @@ export const ButtonAccountNamedMobile = styled.button`
   padding: 10px 10px;
   margin: 10px auto;
   width: 130px;
-  height: 60px;
+  height: 50px;
   background-color: rgba(77, 10, 199, 1);
   box-sizing: border-box;
   border-radius: 4px;
@@ -84,10 +87,5 @@ export const ButtonAccountNamedMobile = styled.button`
   &:active {
     outline: 1px solid #4006ab;
     outline-offset: 1px;
-  }
-
-  @media screen and (min-width: 1200px) {
-    flex-shrink: 1;
-    min-width: 0;
   }
 `;

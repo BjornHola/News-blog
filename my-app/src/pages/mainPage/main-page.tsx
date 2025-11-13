@@ -2,6 +2,7 @@ import type { FC } from "react";
 import { Header } from "../../layout/header/index-header";
 import {
   WrapperForMainPage,
+  WrapperForTitleTabs,
   SectionButtonSort,
   ButtonBlock,
   SelectBlock,
@@ -17,16 +18,18 @@ export const MainPage: FC = () => {
   return (
     <WrapperForMainPage>
       <Header isAuth={false} />
-      <Title content="My Blog" />
+      <WrapperForTitleTabs>
+        <Title content="My Blog" />
+        <Tab
+          labels={["Articles", "News"]}
+          state="default"
+          onTabChange={(index) => console.log("Active tab:", index)}
+        />
+      </WrapperForTitleTabs>
       <SectionButtonSort>
         <ButtonBlock></ButtonBlock>
         <SelectBlock></SelectBlock>
       </SectionButtonSort>
-      <Tab
-        labels={["Articles", "News"]}
-        state="default"
-        onTabChange={(index) => console.log("Active tab:", index)}
-      />
       <NewsBlock>
         <PostCardMedium
           post={{
