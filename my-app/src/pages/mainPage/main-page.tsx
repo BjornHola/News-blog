@@ -13,6 +13,7 @@ import { Tab } from "../../components/common/tabs/tabs-index";
 import { PostCardMedium } from "../../components/common/cardOfPost/index-postmedium";
 import MockImage from "../../assets/Mock.jpg";
 import { Footer } from "../../layout/footer/index-footer";
+import { SortButton } from "../../components/common/SortButtons/index.-sortButtons";
 
 export const MainPage: FC = () => {
   return (
@@ -27,7 +28,9 @@ export const MainPage: FC = () => {
         />
       </WrapperForTitleTabs>
       <SectionButtonSort>
-        <ButtonBlock></ButtonBlock>
+        <ButtonBlock>
+          <SortButton state="default" labels={["Day", "Week", "Month", "Year"]} />
+        </ButtonBlock>
         <SelectBlock></SelectBlock>
       </SectionButtonSort>
       <NewsBlock>

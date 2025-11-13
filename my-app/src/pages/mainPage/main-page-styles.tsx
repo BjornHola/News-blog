@@ -49,6 +49,7 @@ export const SectionButtonSort = styled.div`
 export const ButtonBlock = styled.div`
   display: flex;
   justify-content: center;
+  gap: 5px;
   box-sizing: border-box;
   border: 2px solid blue; //
   background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
