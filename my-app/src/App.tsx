@@ -2,8 +2,10 @@ import { Fragment } from "react/jsx-runtime";
 import "./App.css";
 
 import { ThemeProvider } from "./context";
+// import { PostCardMedium } from "./components/common/cardOfPost/index-postmedium";
+// import MockImage from "./assets/Mock.jpg";
 // import { SignUpPage } from "./pages/signUp/index-signUp";
-import { SignInPage } from "./pages/signIn/index-signIn";
+// import { SignInPage } from "./pages/signIn/index-signIn";
 // import { Header } from "./layout/header/index-header";
 // import { Footer } from "./layout/footer/index-footer";
 
@@ -16,13 +18,22 @@ import { SignInPage } from "./pages/signIn/index-signIn";
 // import { Form } from "./forms/index-form";
 // import { SearchComponent } from "./components/common/search/index-search";
 // import { Logo } from "./components/common/Blogologo/logo-index";
+import { MainPage } from "./pages/mainPage/index-main-page";
 
 function App() {
   return (
     <ThemeProvider>
       <Fragment>
+        <MainPage />
+        {/* <PostCardMedium
+          post={{
+            image: MockImage,
+            date: "April 20, 2021",
+            title: "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
+          }}
+        /> */}
         {/* <SignUpPage /> */}
-        <SignInPage />
+        {/* <SignInPage /> */}
         {/* <Header isAuth /> */}
         {/* <Footer /> */}
         {/* <ButtonAccount label="Artem Malkin" type="button" onClick={() => console.log("Hello")} />

@@ -13,19 +13,22 @@ export const StyledButtonClose = styled.button`
   margin: 20px auto;
   padding: 0.25em 0.5em;
 
-  &:hover {
-    background-color: #754d9da1;
-    box-shadow: 0 3px 3px #414186eb;
-    border: 1px solid transparent;
+  @media screen and (min-width: 1200px) {
+    &:hover {
+      background-color: #754d9da1;
+      box-shadow: 0 3px 3px #414186eb;
+      border: 1px solid transparent;
+    }
+    &:focus {
+      outline: 1px solid #6060b1d2;
+      outline-offset: 1px;
+    }
   }
 
   &:active {
     background-color: #6060b1d2;
   }
-  &:focus {
-    outline: 1px solid #6060b1d2;
-    outline-offset: 1px;
-  }
+
   &:disable {
     background-color: rgba(49, 48, 55, 0.1);
     box-shadow: none;

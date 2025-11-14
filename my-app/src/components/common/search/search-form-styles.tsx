@@ -23,12 +23,16 @@ export const InputForSearch = styled.input`
     font-family: "Inter", sans-serif;
   }
 
-  @media screen and (max-width: 600px) {
-    width: 130px;
-    font-size: 11px;
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
   }
-  @media screen and (max-width: 768px) {
-    width: 160px;
-    font-size: 11px;
+  @media screen and (min-width: 1200px) {
+    font-size: 14px;
+    width: 480px;
+
+    &:hover {
+      order: 2px solid rgb(80, 66, 140);
+      box-shadow: 0 0 3px rgba(36, 36, 57, 0.3);
+    }
   }
 `;

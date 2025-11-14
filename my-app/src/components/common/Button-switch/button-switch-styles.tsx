@@ -24,8 +24,10 @@ export const StyledButtonSwitch = styled.button`
   cursor: pointer;
   transition: background-color 0.3s ease;
 
-  &:hover {
-    background-color: rgba(140, 139, 146, 0.3);
+  @media screen and (min-width: 1200px) {
+    &:hover {
+      background-color: rgba(140, 139, 146, 0.3);
+    }
   }
 
   &[aria-checked="true"] {
@@ -43,8 +45,10 @@ export const StyledButtonSwitch = styled.button`
     border-radius: 50%;
     transition: transform 0.3s ease;
   }
-  &::before:hover {
-    background-color: #f3eaea;
+  @media screen and (min-width: 1200px) {
+    &::before:hover {
+      background-color: #f3eaea;
+    }
   }
 
   &[aria-checked="true"]::before {

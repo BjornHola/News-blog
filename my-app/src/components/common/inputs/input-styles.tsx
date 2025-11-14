@@ -38,17 +38,17 @@ export const WrapperForInput = styled.div`
     }
     @media screen and (min-width: 1201px) {
       width: 350px;
+      &:hover {
+        border: 2px solid rgb(80, 66, 140);
+        color: #baafaf;
+      }
     }
   }
-
-  input[data-state="focus"] {
-    border: 2px solid rgb(80, 66, 140);
-    color: #baafaf;
-  }
-
-  input:hover {
-    border: 2px solid rgb(80, 66, 140);
-    color: #baafaf;
+  @media screen and (min-width: 1201px) {
+    input[data-state="focus"] {
+      border: 2px solid rgb(80, 66, 140);
+      color: #baafaf;
+    }
   }
 
   input:active {

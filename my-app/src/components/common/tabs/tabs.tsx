@@ -23,7 +23,7 @@ export const Tab: FC<ITabsProps> = ({ labels, state = "default", onTabChange }) 
   };
 
   if (!labels || labels.length === 0) {
-    return <div>No labels provided</div>;
+    return <div>No labels for tabs provided</div>;
   }
 
   return (

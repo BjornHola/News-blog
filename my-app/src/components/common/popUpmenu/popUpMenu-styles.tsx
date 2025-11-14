@@ -49,7 +49,9 @@ export const MenuItem = styled.div`
   padding: 0.5rem;
   cursor: pointer;
 
-  &:hover {
-    background: #f0f0f0;
+  @media screen and (min-width: 1200px) {
+    &:hover {
+      background: #f0f0f0;
+    }
   }
 `;

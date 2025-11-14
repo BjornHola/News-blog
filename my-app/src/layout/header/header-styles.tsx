@@ -12,6 +12,7 @@ export const WrapperForHeader = styled.header`
   overflow-x: hidden;
   height: auto;
   min-height: 90px;
+  border: 2px solid orange; //
 
   @media screen and (max-width: 768px) {
     width: 100%;
@@ -40,7 +41,7 @@ export const HeaderLeftContainer = styled.div`
   max-height: 90px;
   border: none;
   flex: 0 1 auto;
-  min-width: 0;
+  border: 2px solid red; //
 
   @media screen and (max-width: 768px) {
     padding: 0 10px;
@@ -53,6 +54,7 @@ export const HeaderLeftContainer = styled.div`
 
   @media screen and (min-width: 769px) and (max-width: 1200px) {
     padding-left: 10px;
+    min-width: 0;
   }
 `;
 
@@ -67,17 +69,5 @@ export const HeaderRightContainer = styled.div`
   padding-right: 20px;
   flex: 0 1 auto;
   min-width: 0;
-
-  @media screen and (max-width: 768px) {
-    margin: 0 10px;
-  }
-
-  @media screen and (min-width: 600px) and (max-width: 768px) {
-    padding-right: 25px;
-  }
-
-  @media screen and (min-width: 769px) and (max-width: 1200px) {
-    padding-right: 70px;
-    margin-right: 20px;
-  }
+  border: 2px solid red; //
 `;
