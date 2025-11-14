@@ -37,13 +37,22 @@ export const WrapperForTitleTabs = styled.div`
 `;
 
 export const SectionButtonSort = styled.div`
-  width: 1005;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  gap: 10px;
   box-sizing: border-box;
   border: 2px solid blue; //
   background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
+
+  @media screen and (min-width: 768px) and (max-width: 1152px) {
+    max-width: 770px;
+  }
+  @media screen and (min-width: 1153px) {
+    max-width: 1130px;
+    justify-content: space-between;
+  }
 `;
 
 export const ButtonBlock = styled.div`
@@ -54,15 +63,47 @@ export const ButtonBlock = styled.div`
   border: 2px solid blue; //
   background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
+
+  @media screen and (max-width: 768px) {
+    width: 94vw;
+    max-width: 300px;
+    min-width: 140px;
+    border-radius: 12px;
+    border: 1px solid #aaaaaa;
+    box-shadow: 0 1px 10px 0 rgba(30, 30, 60, 0.07);
+    margin-bottom: 8px;
+    padding: 2px 0;
+  }
 `;
 
 export const SelectBlock = styled.div`
+  position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
   box-sizing: border-box;
   border: 2px solid blue; //
   background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
+
+  @media screen and (max-width: 768px) {
+    width: 94vw;
+    max-width: 300px;
+    min-width: 140px;
+    border-radius: 12px;
+    border: 1px solid #aaaaaa;
+    box-shadow: 0 1px 10px 0 rgba(30, 30, 60, 0.07);
+    margin-bottom: 8px;
+    padding: 2px 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin: 0;
+  }
 `;
 
 export const NewsBlock = styled.div`

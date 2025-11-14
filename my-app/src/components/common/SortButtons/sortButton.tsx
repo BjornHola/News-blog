@@ -15,9 +15,7 @@ export const SortButton: FC<ISortButtonProps> = ({ labels, state, onClick, tabIn
 
   const handleWithClick = (index: number) => {
     setActiveIndex(index);
-    if (onClick) {
-      onClick(index);
-    }
+    if (onClick) onClick(index);
   };
 
   if (!labels || labels.length === 0) {

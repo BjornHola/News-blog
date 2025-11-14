@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { useState, type FC } from "react";
 import { Header } from "../../layout/header/index-header";
 import {
   WrapperForMainPage,
@@ -14,8 +14,20 @@ import { PostCardMedium } from "../../components/common/cardOfPost/index-postmed
 import MockImage from "../../assets/Mock.jpg";
 import { Footer } from "../../layout/footer/index-footer";
 import { SortButton } from "../../components/common/SortButtons/index.-sortButtons";
+import { CustomDropdown } from "../../components/common/Select/index-select";
+import { SelectItems } from "../../components/common/Select/constants";
+import { useIsMobile } from "../../utils/hooks/resizeWindow";
+import { sortButtonItems } from "../../components/common/SortButtons/constants";
 
 export const MainPage: FC = () => {
+  const [currentValue, setCurrentValue] = useState(SelectItems[0]);
+  const [sortValue, setSortValue] = useState(sortButtonItems[0]);
+  const isMobile = useIsMobile(768);
+
+  const handleSortChange = (idx: number) => {
+    setSortValue(sortButtonItems[idx]);
+  };
+
   return (
     <WrapperForMainPage>
       <Header isAuth={false} />
@@ -28,10 +40,26 @@ export const MainPage: FC = () => {
         />
       </WrapperForTitleTabs>
       <SectionButtonSort>
-        <ButtonBlock>
-          <SortButton state="default" labels={["Day", "Week", "Month", "Year"]} />
-        </ButtonBlock>
-        <SelectBlock></SelectBlock>
+        {isMobile ? (
+          <SelectBlock>
+            <CustomDropdown
+              options={sortButtonItems}
+              value={sortValue}
+              onChange={handleSortChange}
+            />
+          </SelectBlock>
+        ) : (
+          <ButtonBlock>
+            <SortButton labels={sortButtonItems} state="default" onClick={handleSortChange} />
+          </ButtonBlock>
+        )}
+        <SelectBlock>
+          <CustomDropdown
+            options={SelectItems}
+            onChange={(_, val) => setCurrentValue(val)}
+            value={currentValue}
+          />
+        </SelectBlock>
       </SectionButtonSort>
       <NewsBlock>
         <PostCardMedium
