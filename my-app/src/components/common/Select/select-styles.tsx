@@ -59,10 +59,8 @@ export const DropdownMenu = styled.ul`
   box-shadow: 0 6px 24px 0 #aeaeae26;
   border: 1px solid #eeeeee;
   font-size: 16px;
-  /* min-width: 100%; */
   list-style: none;
   z-index: 10;
-  /* top: 50px; */
   overflow: hidden;
 
   @media screen and (max-width: 768px) {
