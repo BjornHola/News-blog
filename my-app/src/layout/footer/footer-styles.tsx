@@ -12,6 +12,10 @@ export const StyledFooter = styled.footer`
   overflow-x: hidden;
   background: ${({ theme }) => (theme.mode === "dark" ? "#504d4d33" : "#b9b2b250")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#a5a6a9ca" : "#8d8e97")};
+
+  @media screen and (min-width: 320px) and (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 export const YearParagraph = styled.p`
   font-family: "Inter";
@@ -20,12 +24,16 @@ export const YearParagraph = styled.p`
   line-height: 24px;
   letter-spacing: 0;
   padding: 0 0 0 30px;
-  border: 2px solid red; //
+
+  @media screen and (min-width: 320px) and (max-width: 500px) {
+    font-size: 14px;
+    line-height: 20px;
+  }
 `;
 
 export const ThemeButtonSection = styled.div`
   padding: 0 30px 0 0;
-  border: 2px solid red; //
+
   & h5 {
     color: inherit;
   }

@@ -151,4 +151,3 @@ export const MainPage: FC = () => {
     </WrapperForMainPage>
   );
 };
-// без пагинации и сортровки с моками

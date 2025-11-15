@@ -12,7 +12,6 @@ export const WrapperForHeader = styled.header`
   overflow-x: hidden;
   height: auto;
   min-height: 90px;
-  border: 2px solid orange; //
 
   @media screen and (max-width: 768px) {
     width: 100%;
@@ -41,7 +40,6 @@ export const HeaderLeftContainer = styled.div`
   max-height: 90px;
   border: none;
   flex: 0 1 auto;
-  border: 2px solid red; //
 
   @media screen and (max-width: 768px) {
     padding: 0 10px;
@@ -69,5 +67,4 @@ export const HeaderRightContainer = styled.div`
   padding-right: 20px;
   flex: 0 1 auto;
   min-width: 0;
-  border: 2px solid red; //
 `;
