@@ -16,7 +16,6 @@ export const StyledWrapperMedium = styled.div`
     0 6px 24px rgba(0, 0, 0, 0.15),
     0 1.5px 4px rgba(0, 0, 0, 0.06);
   transition: box-shadow 0.2s;
-  border: 2px solid red; //
 
   @media screen and (min-width: 320px) and (max-width: 768px) {
     max-width: 500px;
@@ -44,7 +43,6 @@ export const ImageDiv = styled.div`
   position: relative;
   background: ${({ theme }) => (theme.mode === "dark" ? "#504d4d33" : "#FFFFFF")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
-  border: 2px solid blue; //
 
   &::after {
     content: "";
@@ -79,7 +77,6 @@ export const ImageDiv = styled.div`
     height: auto;
     object-fit: cover;
     border-radius: 6px;
-    border: 2px solid blue; //
   }
 `;
 
@@ -92,7 +89,6 @@ export const ContentDiv = styled.div`
   width: 100%;
   text-align: center;
   background: ${({ theme }) => (theme.mode === "dark" ? "#504d4d33" : "#FFFFFF")};
-  border: 2px solid green; //
 `;
 
 export const SpanWithDate = styled.span`
@@ -103,7 +99,6 @@ export const SpanWithDate = styled.span`
   letter-spacing: 0;
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#31303780")};
   background: ${({ theme }) => (theme.mode === "dark" ? "#504d4d33" : "#FFFFFF")};
-  border: 2px solid green; //
 `;
 
 export const Headline = styled.h3`
@@ -115,6 +110,5 @@ export const Headline = styled.h3`
   text-align: left;
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
   background: ${({ theme }) => (theme.mode === "dark" ? "#504d4d33" : "#FFFFFF")};
-  border: 2px solid green; //
   padding: 5px;
 `;

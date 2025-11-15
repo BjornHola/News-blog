@@ -9,7 +9,6 @@ export const WrapperForMainPage = styled.div`
   gap: 10px;
   overflow-x: hidden;
   box-sizing: border-box;
-  border: 2px solid red; //
   background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
 
@@ -42,7 +41,6 @@ export const SectionButtonSort = styled.div`
   justify-content: space-around;
   gap: 10px;
   box-sizing: border-box;
-  border: 2px solid blue; //
   background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
 
@@ -60,7 +58,6 @@ export const ButtonBlock = styled.div`
   justify-content: center;
   gap: 5px;
   box-sizing: border-box;
-  border: 2px solid blue; //
   background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
 
@@ -86,7 +83,6 @@ export const SelectBlock = styled.div`
   max-width: 300px;
   margin: 0 auto;
   box-sizing: border-box;
-  border: 2px solid blue; //
   background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
 
@@ -114,7 +110,6 @@ export const NewsBlock = styled.div`
   flex-wrap: wrap;
   flex: 1 1 auto;
   box-sizing: border-box;
-  border: 2px solid pink; //
   gap: 5px 5px;
   background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};

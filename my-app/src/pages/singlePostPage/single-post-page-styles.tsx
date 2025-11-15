@@ -10,7 +10,6 @@ export const WrapperForSinglePostPage = styled.div`
   padding: 0;
   overflow-x: hidden;
   box-sizing: border-box;
-  border: 2px solid red; //
   background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
 
@@ -26,7 +25,6 @@ export const WrapperForSocialMedia = styled.div`
   padding: 20px 20px;
   display: flex;
   justify-content: flex-start;
-  border: 2px solid red; //
   background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
 
@@ -40,7 +38,6 @@ export const SocialMediaBlock = styled.div`
   gap: 5px;
   justify-content: center;
   padding: 0 12px;
-  border: 2px solid red; //
   transition: all 0.3s ease;
 
   button {
@@ -76,11 +73,9 @@ export const MediumPostsBlock = styled.div`
   flex-wrap: wrap;
   flex: 1 1 auto;
   box-sizing: border-box;
-  border: 2px solid pink; //
   gap: 5px 5px;
   background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
-  border: 2px solid red; //
 
   @media screen and (min-width: 769px) {
     flex: 0 1 auto;

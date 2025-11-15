@@ -24,7 +24,6 @@ export const YearParagraph = styled.p`
   line-height: 24px;
   letter-spacing: 0;
   padding: 0 0 0 30px;
-  border: 2px solid red; //
 
   @media screen and (min-width: 320px) and (max-width: 500px) {
     font-size: 14px;
@@ -34,7 +33,7 @@ export const YearParagraph = styled.p`
 
 export const ThemeButtonSection = styled.div`
   padding: 0 30px 0 0;
-  border: 2px solid red; //
+
   & h5 {
     color: inherit;
   }
