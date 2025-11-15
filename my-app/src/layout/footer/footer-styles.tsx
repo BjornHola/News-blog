@@ -15,6 +15,7 @@ export const StyledFooter = styled.footer`
 
   @media screen and (min-width: 320px) and (max-width: 500px) {
     flex-direction: column;
+    align-items: center;
   }
 `;
 export const YearParagraph = styled.p`
@@ -28,11 +29,16 @@ export const YearParagraph = styled.p`
   @media screen and (min-width: 320px) and (max-width: 500px) {
     font-size: 14px;
     line-height: 20px;
+    padding: 0;
   }
 `;
 
 export const ThemeButtonSection = styled.div`
   padding: 0 30px 0 0;
+
+  @media screen and (min-width: 320px) and (max-width: 500px) {
+    padding: 0;
+  }
 
   & h5 {
     color: inherit;

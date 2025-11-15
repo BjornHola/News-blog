@@ -6,7 +6,6 @@ export const WrapperForTitle = styled.div`
   padding: 10px;
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
   background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
-  border: 2px solid orange; //
 `;
 
 export const Headline = styled.h1<{ backgroundColor?: string; color?: string }>`

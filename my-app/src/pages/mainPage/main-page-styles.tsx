@@ -103,7 +103,7 @@ export const SelectBlock = styled.div`
 `;
 
 export const NewsBlock = styled.div`
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,3 +123,98 @@ export const NewsBlock = styled.div`
     padding: 10px;
   }
 `;
+
+// error block
+const ErrorContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 2rem 1rem;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    min-height: 300px;
+    padding: 1.5rem 1rem;
+  }
+
+  @media (max-width: 480px) {
+    min-height: 250px;
+    padding: 1rem 0.75rem;
+  }
+`;
+
+const ErrorMessage = styled.p`
+  color: #dc2626;
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  max-width: 500px;
+  line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+    max-width: 400px;
+    padding: 0 1rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+`;
+
+const RetryButton = styled.button`
+  background-color: #3b82f6;
+  color: rgb(255, 255, 255);
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 140px;
+
+  &:hover {
+    background-color: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.625rem 1.75rem;
+    font-size: 0.9375rem;
+    min-width: 120px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.875rem;
+    min-width: 100px;
+    width: calc(100% - 2rem);
+    max-width: 200px;
+  }
+
+  @media (hover: none) {
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+`;
+
+export { ErrorContainer, RetryButton, ErrorMessage };

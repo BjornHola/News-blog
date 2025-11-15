@@ -19,7 +19,7 @@ body {
   padding: 0;
   display: flex;
   place-items: center;
-  width: 100vw;
+  width: 100%;
   min-width: 320px;
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;

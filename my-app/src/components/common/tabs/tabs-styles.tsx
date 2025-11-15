@@ -14,7 +14,6 @@ export const ButtonContainer = styled.div`
   justify-content: flex-start;
   margin: 20px auto;
   padding: 20px;
-  border: 2px solid green; //
   background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
 
