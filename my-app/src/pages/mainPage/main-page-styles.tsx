@@ -14,7 +14,7 @@ export const WrapperForMainPage = styled.div`
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
 
   @media screen and (min-width: 1200px) {
-    max-width: 1900px;
+    max-width: 1920px;
     margin: 0 auto;
   }
 `;

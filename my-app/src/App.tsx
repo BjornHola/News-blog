@@ -2,8 +2,10 @@ import { Fragment } from "react/jsx-runtime";
 import "./App.css";
 
 import { ThemeProvider } from "./context";
-import { PostCardExtended } from "./components/common/cardOfPost/index-postExtended";
-import MockImageExtended from "./assets/ExtendedDefault.jpg";
+import { SinglePostPage } from "./pages/singlePostPage/index-single-post-page";
+
+// import { PostCardExtended } from "./components/common/cardOfPost/index-postExtended";
+// import MockImageExtended from "./assets/ExtendedDefault.jpg";
 // import { PostCardMedium } from "./components/common/cardOfPost/index-postmedium";
 // import MockImage from "./assets/Mock.jpg";
 // import { SignUpPage } from "./pages/signUp/index-signUp";
@@ -26,8 +28,9 @@ function App() {
   return (
     <ThemeProvider>
       <Fragment>
+        <SinglePostPage />
         {/* <MainPage /> */}
-        <PostCardExtended
+        {/* <PostCardExtended
           post={{
             image: MockImageExtended,
             title: "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
@@ -56,7 +59,7 @@ function App() {
                    with Hambling’s career trajectory, which has been punctuated by a flurry of public commissions, institutional recognition, and 
                    secondary-market demand.`,
           }}
-        />
+        /> */}
         {/* <PostCardMedium
           post={{
             image: MockImage,

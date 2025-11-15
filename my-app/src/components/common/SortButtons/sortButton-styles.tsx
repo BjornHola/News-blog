@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import type { SortButtonState } from "./sortButton";
 
-interface SortingButtonProps {
+export interface SortingButtonProps {
   $isActive?: boolean;
   disabled: boolean;
   $state: SortButtonState;
