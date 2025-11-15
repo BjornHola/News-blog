@@ -66,7 +66,7 @@ export const SocialMediaBlock = styled.div`
 
 //pagination
 export const MediumPostsBlock = styled.div`
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

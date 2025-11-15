@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 
 export const StyledWrapperMedium = styled.div`
   max-width: 370px;
+  min-height: 480px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,7 +19,10 @@ export const StyledWrapperMedium = styled.div`
   transition: box-shadow 0.2s;
 
   @media screen and (min-width: 320px) and (max-width: 768px) {
+    width: 100%;
+    min-width: 320px;
     max-width: 500px;
+    min-height: 420px;
   }
 
   @media screen and (min-width: 769px) and (max-width: 1200px) {
@@ -89,6 +93,7 @@ export const ContentDiv = styled.div`
   width: 100%;
   text-align: center;
   background: ${({ theme }) => (theme.mode === "dark" ? "#504d4d33" : "#FFFFFF")};
+  flex: 1;
 `;
 
 export const SpanWithDate = styled.span`
@@ -102,10 +107,11 @@ export const SpanWithDate = styled.span`
 `;
 
 export const Headline = styled.h3`
+  max-height: 84px;
   font-family: Inter;
   font-weight: 600;
   font-size: 18px;
-  line-height: 28px;
+  line-height: 24px;
   letter-spacing: 0;
   text-align: left;
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};

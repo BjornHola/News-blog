@@ -1,4 +1,4 @@
-import { useState, type FC } from "react";
+import { useEffect, useState, type FC } from "react";
 import { Header } from "../../layout/header/index-header";
 import {
   WrapperForMainPage,
@@ -11,13 +11,20 @@ import {
 import { Title } from "../../components/common/Titles/title-index";
 import { Tab } from "../../components/common/tabs/tabs-index";
 import { PostCardMedium } from "../../components/common/cardOfPost/index-postmedium";
-import MockImage from "../../assets/Mock.jpg";
 import { Footer } from "../../layout/footer/index-footer";
 import { SortButton } from "../../components/common/SortButtons/index.-sortButtons";
 import { CustomDropdown } from "../../components/common/Select/index-select";
 import { SelectItems } from "../../components/common/Select/constants";
 import { useIsMobile } from "../../utils/hooks/resizeWindow";
 import { sortButtonItems } from "../../components/common/SortButtons/constants";
+import { useAppDispatch, useAppSelector } from "../../utils/hooks/storehooks";
+import {
+  clearError,
+  fetchArticles,
+  selectArticles,
+  selectError,
+  selectLoading,
+} from "../../core/articlesSlice";
 
 export const MainPage: FC = () => {
   const [currentValue, setCurrentValue] = useState(SelectItems[0]);
@@ -27,6 +34,35 @@ export const MainPage: FC = () => {
   const handleSortChange = (idx: number) => {
     setSortValue(sortButtonItems[idx]);
   };
+
+  // store
+  const dispatch = useAppDispatch();
+  const articles = useAppSelector(selectArticles);
+  const loading = useAppSelector(selectLoading);
+  const error = useAppSelector(selectError);
+
+  // load data fro API
+  useEffect(() => {
+    dispatch(fetchArticles({ limit: 12, offset: 0 }));
+  }, [dispatch]);
+
+  const handleRetry = () => {
+    dispatch(clearError());
+    dispatch(fetchArticles({ limit: 12, offset: 0 }));
+  };
+
+  if (loading) {
+    return <div>Loading articles...</div>;
+  }
+
+  if (error) {
+    return (
+      <ErrorContainer>
+        <ErrorMessage>⚠️ {error}</ErrorMessage>
+        <RetryButton onClick={handleRetry}>Try Again</RetryButton>
+      </ErrorContainer>
+    );
+  }
 
   return (
     <WrapperForMainPage>
@@ -62,90 +98,20 @@ export const MainPage: FC = () => {
         </SelectBlock>
       </SectionButtonSort>
       <NewsBlock>
-        <PostCardMedium
-          post={{
-            image: MockImage,
-            date: "April 20, 2021",
-            title: "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
-          }}
-        />
-        <PostCardMedium
-          post={{
-            image: MockImage,
-            date: "April 20, 2021",
-            title: "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
-          }}
-        />
-        <PostCardMedium
-          post={{
-            image: MockImage,
-            date: "April 20, 2021",
-            title: "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
-          }}
-        />
-        <PostCardMedium
-          post={{
-            image: MockImage,
-            date: "April 20, 2021",
-            title: "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
-          }}
-        />
-        <PostCardMedium
-          post={{
-            image: MockImage,
-            date: "April 20, 2021",
-            title: "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
-          }}
-        />
-        <PostCardMedium
-          post={{
-            image: MockImage,
-            date: "April 20, 2021",
-            title: "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
-          }}
-        />
-        <PostCardMedium
-          post={{
-            image: MockImage,
-            date: "April 20, 2021",
-            title: "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
-          }}
-        />
-        <PostCardMedium
-          post={{
-            image: MockImage,
-            date: "April 20, 2021",
-            title: "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
-          }}
-        />
-        <PostCardMedium
-          post={{
-            image: MockImage,
-            date: "April 20, 2021",
-            title: "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
-          }}
-        />
-        <PostCardMedium
-          post={{
-            image: MockImage,
-            date: "April 20, 2021",
-            title: "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
-          }}
-        />
-        <PostCardMedium
-          post={{
-            image: MockImage,
-            date: "April 20, 2021",
-            title: "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
-          }}
-        />
-        <PostCardMedium
-          post={{
-            image: MockImage,
-            date: "April 20, 2021",
-            title: "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
-          }}
-        />
+        {articles.map((article) => (
+          <PostCardMedium
+            key={article.id}
+            post={{
+              image: article.image_url,
+              date: new Date(article.published_at).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              }),
+              title: article.title,
+            }}
+          />
+        ))}
       </NewsBlock>
       <Footer />
     </WrapperForMainPage>
