@@ -7,6 +7,9 @@ import {
   ButtonBlock,
   SelectBlock,
   NewsBlock,
+  ErrorContainer,
+  ErrorMessage,
+  RetryButton,
 } from "./main-page-styles";
 import { Title } from "../../components/common/Titles/title-index";
 import { Tab } from "../../components/common/tabs/tabs-index";
