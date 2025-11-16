@@ -4,6 +4,7 @@ export const PATHS = {
   SIGN_UP: "/register",
   MAIN_PAGE: "/myBlogs/articles",
   GUEST_PAGE: "/", //
+  ARTICLE_PAGE: "/articles/:id",
   NotFound: "*",
 } as const;
 

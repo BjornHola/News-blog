@@ -5,6 +5,7 @@ import { SignUpPage } from "../pages/signUp/index-signUp";
 import { PATHS } from "./configs";
 import { NotFoundPage } from "../pages/notFoundPage/index-notFoundPage";
 import { GuestPage } from "../pages/guestPAge/guest-page-index";
+import { SinglePostPage } from "../pages/singlePostPage/index-single-post-page";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
   {
     path: PATHS.GUEST_PAGE,
     element: <GuestPage />, //
+  },
+  {
+    path: PATHS.ARTICLE_PAGE,
+    element: <SinglePostPage />,
   },
 ]);
 // main page - страница со статьями, start page - гостевая страница

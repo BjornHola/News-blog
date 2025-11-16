@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const WrapperForNotFound = styled.div`
   display: flex;
-  max-width: 100%;
+  width: 100%;
   height: 100vh;
   justify-content: center;
   background-color: #817c7c;
@@ -10,7 +10,7 @@ export const WrapperForNotFound = styled.div`
 `;
 
 export const TitleNotFound = styled.h1`
-  display: inline-block;
+  display: block;
   margin: 20px;
   text-transform: uppercase;
   color: black;
