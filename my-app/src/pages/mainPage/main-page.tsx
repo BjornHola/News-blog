@@ -29,7 +29,6 @@ import {
   selectLoading,
 } from "../../core/articlesSlice";
 import { Link } from "react-router-dom";
-import { PATHS } from "../../router/configs";
 
 export const MainPage: FC = () => {
   const [currentValue, setCurrentValue] = useState(SelectItems[0]);
