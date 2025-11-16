@@ -28,6 +28,8 @@ import {
   selectError,
   selectLoading,
 } from "../../core/articlesSlice";
+import { Link } from "react-router-dom";
+import { PATHS } from "../../router/configs";
 
 export const MainPage: FC = () => {
   const [currentValue, setCurrentValue] = useState(SelectItems[0]);
@@ -39,12 +41,13 @@ export const MainPage: FC = () => {
   };
 
   // store
+  // get all articles
   const dispatch = useAppDispatch();
   const articles = useAppSelector(selectArticles);
   const loading = useAppSelector(selectLoading);
   const error = useAppSelector(selectError);
 
-  // load data fro API
+  //dispatch
   useEffect(() => {
     dispatch(fetchArticles({ limit: 12, offset: 0 }));
   }, [dispatch]);
@@ -102,18 +105,19 @@ export const MainPage: FC = () => {
       </SectionButtonSort>
       <NewsBlock>
         {articles.map((article) => (
-          <PostCardMedium
-            key={article.id}
-            post={{
-              image: article.image_url,
-              date: new Date(article.published_at).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              }),
-              title: article.title,
-            }}
-          />
+          <Link to={`/articles/${article.id}`} key={article.id}>
+            <PostCardMedium
+              post={{
+                image: article.image_url,
+                date: new Date(article.published_at).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                }),
+                title: article.title,
+              }}
+            />
+          </Link>
         ))}
       </NewsBlock>
       <Footer />

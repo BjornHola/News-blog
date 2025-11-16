@@ -26,7 +26,7 @@ export const TitleBlock = styled.h3`
 
   @media screen and (min-width: 320px) and (max-width: 768px) {
     max-width: 760px;
-    font-size: 30px;
+    font-size: 29px;
     line-height: 44px;
   }
 
@@ -46,10 +46,14 @@ export const ExtendedImageDiv = styled.div`
   cursor: pointer;
   box-sizing: border-box;
 
-  @media screen and (min-width: 302px) and (max-width: 768px) {
+  @media screen and (min-width: 320px) and (max-width: 768px) {
     max-width: 760px;
     flex: 0 1 auto;
     padding: 0 5px;
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1030px) {
+    padding: 0 7px;
   }
 
   & img {
