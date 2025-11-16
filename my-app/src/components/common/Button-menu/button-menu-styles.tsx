@@ -12,7 +12,7 @@ export const ButtnMenu = styled.button`
   border-radius: 2px;
   border: 1px solid #5d5dad;
   cursor: pointer;
-  background-color: #1f1f3a;
+  background-color: #40407cd0;
   color: rgb(15, 1, 1);
   transition: all 0.3s ease;
   position: relative;
