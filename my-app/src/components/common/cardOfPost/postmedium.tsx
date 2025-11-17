@@ -6,6 +6,7 @@ import {
   SpanWithDate,
   Headline,
 } from "./postmedium-styles";
+import MockImage from "../../../assets/Mock.jpg";
 
 export interface Post {
   id?: string | undefined;
@@ -23,10 +24,19 @@ export const PostCardMedium: FC<{ post: Post }> = ({ post }) => {
     <StyledWrapperMedium style={{ cursor: "pointer" }} onClick={onClick} id={id}>
       {image ? (
         <ImageDiv>
-          <img src={image} alt={title} onClick={onClick} style={{ cursor: "pointer" }} />
+          <img
+            src={image}
+            alt={title}
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = MockImage;
+            }}
+            onClick={onClick}
+            style={{ cursor: "pointer" }}
+          />
         </ImageDiv>
       ) : (
-        <p>Default caption</p>
+        <img src={MockImage} alt="Default preview" />
       )}
       <ContentDiv>
         <SpanWithDate>{date}</SpanWithDate>

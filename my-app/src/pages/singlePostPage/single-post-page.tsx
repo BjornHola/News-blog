@@ -16,49 +16,115 @@ import {
   clearSelectedArticle,
   fetchArticleById,
   selectArticleById,
-  selectError,
-  selectLoading,
+  selectError as selectArticleError,
+  selectLoading as selectArticleLoading,
 } from "../../core/articlesSlice";
-import { useParams } from "react-router-dom";
-import MockImageExtended from "../../assets/ExtendedDefault.jpg";
+import { useLocation, useParams } from "react-router-dom";
+import {
+  clearSelectedNews,
+  fetchNewsById,
+  selectNewsById,
+  selectNewsError,
+  selectNewsLoading,
+} from "../../core/newsSlice";
 
 export const SinglePostPage: FC = () => {
   const theme = useTheme();
   const strokeColor = theme.mode === "dark" ? "#888080e1" : "#313037";
-  //extract id
+
+  //extract id to get article/news
   const { id } = useParams<{ id: string }>();
-  // read state from store
+  //active either article or news
+  const location = useLocation();
+  const isArticlePage = location.pathname.startsWith("/articles");
+  const isNewsPage = location.pathname.startsWith("/news");
+
+  // read state from store (articles)
   const dispatch = useAppDispatch();
-  const loading = useAppSelector(selectLoading);
-  const error = useAppSelector(selectError);
+  const loading = useAppSelector(selectArticleLoading);
+  const error = useAppSelector(selectArticleError);
   const article = useAppSelector(selectArticleById);
-  // fetch by Id
+
+  // read state from store to transit to single piece of news
+  const loadingNews = useAppSelector(selectNewsLoading);
+  const errorNews = useAppSelector(selectNewsError);
+  const news = useAppSelector(selectNewsById);
+
+  // fetch article by Id
   useEffect(() => {
-    if (id) {
+    if (id && isArticlePage) {
       dispatch(fetchArticleById(Number(id)));
       return () => {
         dispatch(clearSelectedArticle());
       };
     }
-  }, [dispatch, id]);
+  }, [dispatch, id, isArticlePage]);
 
-  // rendering
-  if (loading) return <div>Loading article...</div>;
-  if (error) return <div>Error: {error}</div>;
-  if (!article) return <div>Article not found</div>;
+  // fetch news by Id
+  useEffect(() => {
+    if (id && isNewsPage) {
+      dispatch(fetchNewsById(Number(id)));
+      return () => {
+        dispatch(clearSelectedNews());
+      };
+    }
+  }, [dispatch, id, isNewsPage]);
 
-  console.log("article on detail page:", article); //
+  // rendering results (article)
+  if (isArticlePage) {
+    if (loading)
+      return (
+        <div style={{ color: "black", display: "block", margin: "0 auto" }}>Loading article...</div>
+      );
+    if (error)
+      return (
+        <div style={{ color: "black", display: "block", margin: "0 auto" }}>Error: {error}</div>
+      );
+    if (!article)
+      return (
+        <div style={{ color: "black", display: "block", margin: "0 auto" }}>Article not found</div>
+      );
+    console.log("article on detail page:", article); //
+  }
+
+  // rendering results (news)
+  if (isNewsPage) {
+    if (loadingNews)
+      return (
+        <div style={{ color: "black", display: "block", margin: "0 auto" }}>Loading news...</div>
+      );
+    if (errorNews)
+      return (
+        <div style={{ color: "black", display: "block", margin: "0 auto" }}>Error: {errorNews}</div>
+      );
+    if (!news)
+      return (
+        <div style={{ color: "black", display: "block", margin: "0 auto" }}>News not found</div>
+      );
+    console.log("news on detail page:", news); //
+  }
 
   return (
     <WrapperForSinglePostPage>
       <Header isAuth={false} />
-      <PostCardExtended
-        post={{
-          image: article.image_url || MockImageExtended,
-          title: article.title || "Default title",
-          text: article.summary || "Default text",
-        }}
-      />
+      {isArticlePage && article && (
+        <PostCardExtended
+          post={{
+            image: article.image_url,
+            title: article.title || "Default title",
+            text: article.summary || "Default text",
+          }}
+        />
+      )}
+      {isNewsPage && news && (
+        <PostCardExtended
+          post={{
+            image: news.image_url,
+            title: news.title,
+            text: news.summary,
+          }}
+        />
+      )}
       <WrapperForSocialMedia>
         <SocialMediaBlock>
           <button>
@@ -155,3 +221,4 @@ export const SinglePostPage: FC = () => {
     </WrapperForSinglePostPage>
   );
 };
+// MediumPostsBlock - ?

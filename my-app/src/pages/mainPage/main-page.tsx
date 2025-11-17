@@ -27,17 +27,41 @@ import {
   selectArticles,
   selectError,
   selectLoading,
+  type Article,
 } from "../../core/articlesSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  clearErrorInNews,
+  fetchNews,
+  selectNews,
+  selectNewsError,
+  selectNewsLoading,
+  type News,
+} from "../../core/newsSlice";
 
 export const MainPage: FC = () => {
+  // select + buttons -sort/filter
   const [currentValue, setCurrentValue] = useState(SelectItems[0]);
   const [sortValue, setSortValue] = useState(sortButtonItems[0]);
-  const isMobile = useIsMobile(768);
-
+  // sort-buttons
   const handleSortChange = (idx: number) => {
     setSortValue(sortButtonItems[idx]);
   };
+  //mobile state up to 768 =>  search UI
+  const isMobile = useIsMobile(768);
+  // state - number of the page to render (pagination)
+  const [articlesPage, setArticlesPage] = useState(1);
+  const [newsPage, setNewsPage] = useState(1);
+
+  // max number of the page
+  const maxArticlesPage = 5;
+  const maxNewsPage = 5;
+
+  // navigation over tabs
+  const labels = ["articles", "news"];
+  const { tabLabel } = useParams<{ tabLabel: string }>();
+  const activeTabIndex = labels.indexOf(tabLabel ?? labels[0]);
+  const navigate = useNavigate();
 
   // store
   // get all articles
@@ -45,26 +69,57 @@ export const MainPage: FC = () => {
   const articles = useAppSelector(selectArticles);
   const loading = useAppSelector(selectLoading);
   const error = useAppSelector(selectError);
+  // get all news
+  const news = useAppSelector(selectNews);
+  const newsLoading = useAppSelector(selectNewsLoading);
+  const newsError = useAppSelector(selectNewsError);
 
   //dispatch
   useEffect(() => {
-    dispatch(fetchArticles({ limit: 12, offset: 0 }));
-  }, [dispatch]);
+    if (activeTabIndex === 0) {
+      dispatch(fetchArticles({ limit: 12, offset: (articlesPage - 1) * 12 }));
+    } else if (activeTabIndex === 1) {
+      dispatch(fetchNews({ limit: 12, offset: (newsPage - 1) * 12 })); //
+    }
+  }, [activeTabIndex, dispatch, articlesPage, newsPage]);
 
+  // articles - retry
   const handleRetry = () => {
     dispatch(clearError());
     dispatch(fetchArticles({ limit: 12, offset: 0 }));
   };
 
+  const handleNewsRetry = () => {
+    dispatch(clearErrorInNews());
+    dispatch(fetchNews({ limit: 12, offset: 0 }));
+  };
+
+  // articles
   if (loading) {
-    return <div>Loading articles...</div>;
+    return (
+      <div style={{ color: "black", display: "block", margin: "0 auto" }}>Loading articles...</div>
+    );
   }
 
   if (error) {
     return (
-      <ErrorContainer>
+      <ErrorContainer style={{ color: "black", display: "flex", margin: "0 auto" }}>
         <ErrorMessage>⚠️ {error}</ErrorMessage>
         <RetryButton onClick={handleRetry}>Try Again</RetryButton>
+      </ErrorContainer>
+    );
+  }
+  // news
+  if (newsLoading) {
+    return (
+      <div style={{ color: "black", display: "block", margin: "0 auto" }}>Loading news...</div>
+    );
+  }
+  if (newsError) {
+    return (
+      <ErrorContainer style={{ color: "black", display: "flex", margin: "0 auto" }}>
+        <ErrorMessage>⚠️ {error}</ErrorMessage>
+        <RetryButton onClick={handleNewsRetry}>Try Again</RetryButton>
       </ErrorContainer>
     );
   }
@@ -77,7 +132,8 @@ export const MainPage: FC = () => {
         <Tab
           labels={["Articles", "News"]}
           state="default"
-          onTabChange={(index) => console.log("Active tab:", index)}
+          onTabChange={(index) => navigate(`/myBlogs/tab/${labels[index].toLowerCase()}`)}
+          activeIndex={activeTabIndex}
         />
       </WrapperForTitleTabs>
       <SectionButtonSort>
@@ -103,22 +159,53 @@ export const MainPage: FC = () => {
         </SelectBlock>
       </SectionButtonSort>
       <NewsBlock>
-        {articles.map((article) => (
-          <Link to={`/articles/${article.id}`} key={article.id}>
+        {(activeTabIndex === 0 ? articles : news).map((post: Article | News) => (
+          <Link
+            to={activeTabIndex === 0 ? `/articles/${post.id}` : `/news/${post.id}`}
+            key={post.id}
+          >
             <PostCardMedium
               post={{
-                image: article.image_url,
-                date: new Date(article.published_at).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                }),
-                title: article.title,
+                image: post.image_url,
+                date:
+                  new Date(post.published_at).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  }) || "November 19, 2025",
+                title: post.title || "Default title",
               }}
             />
           </Link>
         ))}
       </NewsBlock>
+      <div style={{ display: "flex", gap: "10px", marginTop: 16 }}>
+        <button
+          onClick={() => {
+            if (activeTabIndex === 0) setArticlesPage((page) => Math.max(page - 1, 1));
+            else setNewsPage((page) => Math.max(page - 1, 1));
+          }}
+          disabled={(activeTabIndex === 0 ? articlesPage : newsPage) === 1}
+        >
+          Prev
+        </button>
+        <span>
+          Page {activeTabIndex === 0 ? articlesPage : newsPage} of{" "}
+          {activeTabIndex === 0 ? maxArticlesPage : maxNewsPage}
+        </span>
+        <button
+          onClick={() => {
+            if (activeTabIndex === 0)
+              setArticlesPage((page) => Math.min(page + 1, maxArticlesPage));
+            else setNewsPage((page) => Math.min(page + 1, maxNewsPage));
+          }}
+          disabled={
+            activeTabIndex === 0 ? articlesPage >= maxArticlesPage : newsPage >= maxNewsPage
+          }
+        >
+          Next
+        </button>
+      </div>
       <Footer />
     </WrapperForMainPage>
   );
