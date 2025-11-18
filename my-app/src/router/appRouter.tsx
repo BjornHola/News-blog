@@ -4,8 +4,9 @@ import { SignInPage } from "../pages/signIn/index-signIn";
 import { SignUpPage } from "../pages/signUp/index-signUp";
 import { PATHS } from "./configs";
 import { NotFoundPage } from "../pages/notFoundPage/index-notFoundPage";
-import { GuestPage } from "../pages/guestPAge/guest-page-index";
+import { GuestPage } from "../pages/guestPage/guest-page-index";
 import { SinglePostPage } from "../pages/singlePostPage/index-single-post-page";
+import { SearchPage } from "../pages/searchPage/search-page";
 
 export const router = createBrowserRouter([
   {
@@ -41,5 +42,6 @@ export const router = createBrowserRouter([
     path: "/myBlogs/tab/:tabLabel",
     element: <MainPage />,
   },
+  { path: PATHS.SEARCH_PAGE, element: <SearchPage /> },
 ]);
 // main page - страница со статьями, start page - гостевая страница

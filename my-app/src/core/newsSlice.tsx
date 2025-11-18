@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
+import { searchNews } from "./searchNewsThunk";
 
 export interface News {
   id: number;
@@ -25,6 +26,7 @@ export interface NewsState {
   currentPage: number;
   totalCount: number;
   selectedNews: News | null;
+  searchResults: News[] | null;
 }
 
 const initialState: NewsState = {
@@ -34,6 +36,7 @@ const initialState: NewsState = {
   currentPage: 1,
   totalCount: 0,
   selectedNews: null,
+  searchResults: [],
 };
 
 // getting all news(blogs)
@@ -41,7 +44,7 @@ export const fetchNews = createAsyncThunk<
   NewsResponse,
   { limit?: number; offset?: number },
   { rejectValue: string }
->("news/fetchNews", async ({ limit = 12, offset = 0 }, { rejectWithValue }) => {
+>("news/fetchNews", async ({ limit = 12, offset = 0 }, { rejectWithValue, signal }) => {
   try {
     const baseUrl = "https://api.spaceflightnewsapi.net/v4/blogs/";
     const params = new URLSearchParams();
@@ -49,7 +52,7 @@ export const fetchNews = createAsyncThunk<
     params.append("offset", offset.toString());
     const url = `${baseUrl}?${params.toString()}`;
 
-    const response = await fetch(url);
+    const response = await fetch(url, { signal });
     console.log("Url we work out: ", url); //
     if (!response.ok) {
       throw new Error(`Response failed: ${response.status}`);
@@ -58,6 +61,9 @@ export const fetchNews = createAsyncThunk<
     console.log("Fetching data from API: ", data); //
     return data;
   } catch (error) {
+    if (error instanceof Error && error.name === "AbortError") {
+      return rejectWithValue("Request was cancelled");
+    }
     if (error instanceof Error) {
       return rejectWithValue(error.message);
     }
@@ -68,10 +74,10 @@ export const fetchNews = createAsyncThunk<
 // get 1 piece of news
 export const fetchNewsById = createAsyncThunk<News, number, { rejectValue: string }>(
   "news/fetchNewsById",
-  async (id: number, { rejectWithValue }) => {
+  async (id: number, { rejectWithValue, signal }) => {
     try {
       const url = `https://api.spaceflightnewsapi.net/v4/blogs/${id}`;
-      const response = await fetch(url);
+      const response = await fetch(url, { signal });
       if (!response.ok) {
         throw new Error(`Response failed: ${response.status}`);
       }
@@ -82,6 +88,9 @@ export const fetchNewsById = createAsyncThunk<News, number, { rejectValue: strin
       console.log("Success: ", data); //
       return data;
     } catch (error) {
+      if (error instanceof Error && error.name === "AbortError") {
+        return rejectWithValue("Request was cancelled");
+      }
       if (error instanceof Error) {
         return rejectWithValue(error.message);
       }
@@ -105,6 +114,9 @@ export const newsSlice = createSlice({
     // clear state
     clearSelectedNews: (state) => {
       state.selectedNews = null;
+    },
+    clearSearchNews: (state) => {
+      state.searchResults = null;
     },
   },
   extraReducers: (builder) => {
@@ -135,11 +147,26 @@ export const newsSlice = createSlice({
       .addCase(fetchNewsById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || "Failed to load news by id";
+      })
+      .addCase(searchNews.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(searchNews.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.searchResults = action.payload.results;
+        state.totalCount = action.payload.count;
+      })
+      .addCase(searchNews.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || "Error! Search failed!";
       });
   },
 });
 
-export const { setCurrentPageForNews, clearErrorInNews, clearSelectedNews } = newsSlice.actions;
+export const { setCurrentPageForNews, clearErrorInNews, clearSelectedNews, clearSearchNews } =
+  newsSlice.actions;
 export default newsSlice.reducer;
 
 // selectors
@@ -152,3 +179,9 @@ export const selectNewsTotalCount = (state: RootState) => state.news.totalCount;
 
 // by id
 export const selectNewsById = (state: RootState) => state.news.selectedNews;
+
+// search
+export const selectSearchNews = (state: RootState) => state.news.searchResults;
+export const selectSearchLoading = (state: RootState) => state.news.loading;
+export const selectSearchError = (state: RootState) => state.news.error;
+export const selectSearchTotalCountNews = (state: RootState) => state.news.totalCount;

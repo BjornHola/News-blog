@@ -57,14 +57,22 @@ export const MainPage: FC = () => {
   const [newsPage, setNewsPage] = useState(1);
 
   // max number of the page
-  const maxArticlesPage = 5;
-  const maxNewsPage = 5;
+  const maxArticlesPage = 3;
+  const maxNewsPage = 3;
 
   // navigation over tabs
   const labels = ["articles", "news"];
   const { tabLabel } = useParams<{ tabLabel: string }>();
-  const activeTabIndex = labels.indexOf(tabLabel ?? labels[0]);
+
+  //define active tab to provide search and throw props to header
+  function toActiveTabLabel(label: unknown): "articles" | "news" {
+    return label === "news" ? "news" : "articles";
+  }
+  const activeTabLabelFromTabsOrUrl: "articles" | "news" = toActiveTabLabel(tabLabel);
+  const activeTabIndex = labels.indexOf(activeTabLabelFromTabsOrUrl);
   const navigate = useNavigate();
+
+  // const activeTabLabel: "articles" | "news" = tabLabel === "news" ? "news" : "articles";
 
   // store
   // get all articles
@@ -82,7 +90,7 @@ export const MainPage: FC = () => {
     if (activeTabIndex === 0) {
       dispatch(fetchArticles({ limit: 12, offset: (articlesPage - 1) * 12 }));
     } else if (activeTabIndex === 1) {
-      dispatch(fetchNews({ limit: 12, offset: (newsPage - 1) * 12 })); //
+      dispatch(fetchNews({ limit: 12, offset: (newsPage - 1) * 12 }));
     }
   }, [activeTabIndex, dispatch, articlesPage, newsPage]);
 
@@ -91,7 +99,7 @@ export const MainPage: FC = () => {
     dispatch(clearError());
     dispatch(fetchArticles({ limit: 12, offset: 0 }));
   };
-
+  // news - retry
   const handleNewsRetry = () => {
     dispatch(clearErrorInNews());
     dispatch(fetchNews({ limit: 12, offset: 0 }));
@@ -121,7 +129,7 @@ export const MainPage: FC = () => {
   if (newsError) {
     return (
       <ErrorContainer style={{ color: "black", display: "flex", margin: "0 auto" }}>
-        <ErrorMessage>⚠️ {error}</ErrorMessage>
+        <ErrorMessage>⚠️ {newsError}</ErrorMessage>
         <RetryButton onClick={handleNewsRetry}>Try Again</RetryButton>
       </ErrorContainer>
     );
@@ -129,7 +137,7 @@ export const MainPage: FC = () => {
 
   return (
     <WrapperForMainPage>
-      <Header isAuth={false} />
+      <Header isAuth={false} activeTabLabel={activeTabLabelFromTabsOrUrl} />
       <WrapperForTitleTabs>
         <Title content="My Blog" />
         <Tab

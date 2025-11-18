@@ -4,14 +4,27 @@ import { SearchButton } from "./search-icon";
 import { StyledButtonClose, StyledOverlay } from "./search-component-styles";
 import { useIsMobile } from "../../../utils/hooks/resizeWindow";
 
-export const SearchComponent: FC = () => {
+export const SearchComponent: FC<{ onSearchSubmit: (value: string) => void }> = ({
+  onSearchSubmit,
+}) => {
   const [isActive, setIsActive] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [isOpenOverlay, setOpenOverlay] = useState(false);
   const isMobileVersion = useIsMobile(768);
 
-  const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchValue) {
+      onSearchSubmit(searchValue.trim());
+      setIsActive(false);
+      setOpenOverlay(false);
+      setSearchValue("");
+    }
+    console.log("Submit!", searchValue); //
   };
 
   return (
@@ -20,14 +33,18 @@ export const SearchComponent: FC = () => {
         // DESKTOP
         isActive ? (
           <>
-            <SearchForm
-              placeholder="Search"
-              type="search"
-              name="search"
-              value={searchValue}
-              onChange={onSearchChange}
-            />
-            <StyledButtonClose onClick={() => setIsActive(false)}>x</StyledButtonClose>
+            <form onSubmit={handleSubmit}>
+              <SearchForm
+                placeholder="Search"
+                type="search"
+                name="search"
+                value={searchValue}
+                onChange={handleChange}
+              />
+              <StyledButtonClose type="button" onClick={() => setIsActive(false)}>
+                x
+              </StyledButtonClose>
+            </form>
           </>
         ) : (
           <SearchButton onClick={() => setIsActive(true)} />
@@ -38,14 +55,16 @@ export const SearchComponent: FC = () => {
           <SearchButton onClick={() => setOpenOverlay(true)} />
           {isOpenOverlay && (
             <StyledOverlay onClick={() => setOpenOverlay(false)}>
-              <input
-                type="search"
-                placeholder="Search"
-                value={searchValue}
-                onChange={onSearchChange}
-                onClick={(e) => e.stopPropagation()}
-                autoFocus
-              />
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="search"
+                  placeholder="Search"
+                  value={searchValue}
+                  onChange={handleChange}
+                  onClick={(e) => e.stopPropagation()}
+                  autoFocus
+                />
+              </form>
             </StyledOverlay>
           )}
         </>
