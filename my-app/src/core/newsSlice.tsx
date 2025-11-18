@@ -184,3 +184,4 @@ export const selectNewsById = (state: RootState) => state.news.selectedNews;
 export const selectSearchNews = (state: RootState) => state.news.searchResults;
 export const selectSearchLoading = (state: RootState) => state.news.loading;
 export const selectSearchError = (state: RootState) => state.news.error;
+export const selectSearchTotalCountNews = (state: RootState) => state.news.totalCount;

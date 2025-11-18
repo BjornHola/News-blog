@@ -189,3 +189,4 @@ export const selectArticleById = (state: RootState) => state.articles.selectedAr
 export const selectSearchArticles = (state: RootState) => state.articles.searchResults;
 export const selectSearchArticlesLoading = (state: RootState) => state.articles.loading;
 export const selectSearchArticlesError = (state: RootState) => state.articles.error;
+export const selectSearchArticlesTotalCount = (state: RootState) => state.articles.totalCount;

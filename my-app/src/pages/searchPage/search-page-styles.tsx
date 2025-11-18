@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const WrapperForSearchPage = styled.div`
   width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,6 +17,12 @@ export const WrapperForSearchPage = styled.div`
     max-width: 1920px;
     margin: 0 auto;
   }
+`;
+
+export const MainContent = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 `;
 
 //newsblock = resultblock

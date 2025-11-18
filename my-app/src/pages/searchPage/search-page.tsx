@@ -1,6 +1,6 @@
 import { useEffect, useState, type FC } from "react";
 import { Header } from "../../layout/header/index-header";
-import { ResultsBlock, WrapperForSearchPage } from "./search-page-styles";
+import { MainContent, ResultsBlock, WrapperForSearchPage } from "./search-page-styles";
 import { Title } from "../../components/common/Titles/title-index";
 import {
   ErrorContainer,
@@ -19,6 +19,7 @@ import {
   selectSearchNews,
   selectSearchLoading as selectSearchLoadingNews,
   selectSearchError as selectSearchErrorNews,
+  selectSearchTotalCountNews as totalCountNews,
   clearSearchNews,
 } from "../../core/newsSlice";
 import {
@@ -26,14 +27,11 @@ import {
   selectSearchArticles,
   selectSearchArticlesError,
   selectSearchArticlesLoading,
+  selectSearchArticlesTotalCount as totalCountArticles,
 } from "../../core/articlesSlice";
 import { searchNews } from "../../core/searchNewsThunk";
 
 export const SearchPage: FC = () => {
-  // max page's number of the page for pagination + quantity of posts to render
-  const maxPage = 3;
-  const pageLimit = 12;
-
   const dispatch = useAppDispatch();
 
   // validate type of tabLabel
@@ -54,6 +52,11 @@ export const SearchPage: FC = () => {
     isArticles ? selectSearchArticlesLoading : selectSearchLoadingNews,
   );
   const error = useAppSelector(isArticles ? selectSearchArticlesError : selectSearchErrorNews);
+
+  // max page's number of the page for pagination + quantity of posts to render
+  const pageLimit = 12;
+  const totalCount = useAppSelector(isArticles ? totalCountArticles : totalCountNews) || 0;
+  const totalPages = Math.max(1, Math.ceil(totalCount / pageLimit));
 
   //active page in pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -116,51 +119,55 @@ export const SearchPage: FC = () => {
   return (
     <WrapperForSearchPage>
       <Header isAuth={false} activeTabLabel={activeTabLabel} />
-      <Title content={`Search results: ${searchValue}`} />
-      {loading && <div>Loading...</div>}
-      {error && (
-        <ErrorContainer>
-          <ErrorMessage>⚠️{error}</ErrorMessage>
-          <RetryButton onClick={handleRetry}>Try Again</RetryButton>
-        </ErrorContainer>
-      )}
-      {!loading && !error && Array.isArray(results) && results.length === 0 && (
-        <ErrorMessage>Nothing was found on your search request</ErrorMessage>
-      )}
-      <ResultsBlock>
-        {results.map((post) => (
-          <Link to={`/${tabLabel}/${post.id}`} key={post.id}>
-            <PostCardMedium
-              post={{
-                image: post.image_url,
-                date: new Date(post.published_at).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                }),
-                title: post.title || "Default title",
-              }}
-            />
-          </Link>
-        ))}
-      </ResultsBlock>
-      <PaginationWrapper>
-        <PaginationButton
-          onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
-          disabled={currentPage === 1}
-        >
-          Prev
-        </PaginationButton>
-        <PageInfo>
-          Page {currentPage} of {maxPage}
-        </PageInfo>
-        <PaginationButton
-          onClick={() => handlePageChange(Math.min(currentPage + 1, maxPage))}
-          disabled={currentPage >= maxPage}
-        >
-          Next
-        </PaginationButton>
-      </PaginationWrapper>
+      <MainContent>
+        <Title content={`Search results: ${searchValue}`} />
+        {loading && <div>Loading...</div>}
+        {error && (
+          <ErrorContainer>
+            <ErrorMessage>⚠️{error}</ErrorMessage>
+            <RetryButton onClick={handleRetry}>Try Again</RetryButton>
+          </ErrorContainer>
+        )}
+        {!loading && !error && Array.isArray(results) && results.length === 0 && (
+          <ErrorMessage>Nothing was found on your search request</ErrorMessage>
+        )}
+        <ResultsBlock>
+          {results.map((post) => (
+            <Link to={`/${tabLabel}/${post.id}`} key={post.id}>
+              <PostCardMedium
+                post={{
+                  image: post.image_url,
+                  date: new Date(post.published_at).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  }),
+                  title: post.title || "Default title",
+                }}
+              />
+            </Link>
+          ))}
+        </ResultsBlock>
+        {totalPages > 1 && (
+          <PaginationWrapper>
+            <PaginationButton
+              onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
+              disabled={currentPage === 1}
+            >
+              Prev
+            </PaginationButton>
+            <PageInfo>
+              Page {currentPage} of {totalPages}
+            </PageInfo>
+            <PaginationButton
+              onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
+              disabled={currentPage >= totalPages}
+            >
+              Next
+            </PaginationButton>
+          </PaginationWrapper>
+        )}
+      </MainContent>
       <Footer />
     </WrapperForSearchPage>
   );
