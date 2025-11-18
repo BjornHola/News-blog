@@ -6,6 +6,7 @@ export const PATHS = {
   GUEST_PAGE: "/", //
   NotFound: "*",
   ACTIVE_TAB: "/myBlogs/tab/:tablabel",
+  SEARCH_PAGE: "/search/:tabLabel/:searchValue",
 } as const;
 
 export type PATHS = (typeof PATHS)[keyof typeof PATHS];
