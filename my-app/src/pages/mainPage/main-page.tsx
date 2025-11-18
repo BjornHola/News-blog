@@ -10,6 +10,9 @@ import {
   ErrorContainer,
   ErrorMessage,
   RetryButton,
+  PaginationWrapper,
+  PaginationButton,
+  PageInfo,
 } from "./main-page-styles";
 import { Title } from "../../components/common/Titles/title-index";
 import { Tab } from "../../components/common/tabs/tabs-index";
@@ -179,8 +182,8 @@ export const MainPage: FC = () => {
           </Link>
         ))}
       </NewsBlock>
-      <div style={{ display: "flex", gap: "10px", marginTop: 16 }}>
-        <button
+      <PaginationWrapper>
+        <PaginationButton
           onClick={() => {
             if (activeTabIndex === 0) setArticlesPage((page) => Math.max(page - 1, 1));
             else setNewsPage((page) => Math.max(page - 1, 1));
@@ -188,12 +191,12 @@ export const MainPage: FC = () => {
           disabled={(activeTabIndex === 0 ? articlesPage : newsPage) === 1}
         >
           Prev
-        </button>
-        <span>
+        </PaginationButton>
+        <PageInfo>
           Page {activeTabIndex === 0 ? articlesPage : newsPage} of{" "}
           {activeTabIndex === 0 ? maxArticlesPage : maxNewsPage}
-        </span>
-        <button
+        </PageInfo>
+        <PaginationButton
           onClick={() => {
             if (activeTabIndex === 0)
               setArticlesPage((page) => Math.min(page + 1, maxArticlesPage));
@@ -204,8 +207,8 @@ export const MainPage: FC = () => {
           }
         >
           Next
-        </button>
-      </div>
+        </PaginationButton>
+      </PaginationWrapper>
       <Footer />
     </WrapperForMainPage>
   );

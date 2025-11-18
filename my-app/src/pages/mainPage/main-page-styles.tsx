@@ -41,6 +41,7 @@ export const SectionButtonSort = styled.div`
   justify-content: space-around;
   gap: 10px;
   box-sizing: border-box;
+  margin-bottom: 10px;
   background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
 
@@ -218,3 +219,79 @@ const RetryButton = styled.button`
 `;
 
 export { ErrorContainer, RetryButton, ErrorMessage };
+
+// Pagination styles
+export const PaginationWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 0 16px;
+  background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
+
+  @media screen and (max-width: 768px) {
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+`;
+
+export const PaginationButton = styled.button<{ disabled?: boolean }>`
+  padding: 6px 12px;
+  min-width: 60px;
+  height: 32px;
+  background-color: ${({ disabled }) => (disabled ? "#aaa9a9" : "rgba(155, 154, 163, 0.5)")};
+  color: ${({ disabled }) => (disabled ? "#827c7c" : "rgba(54, 54, 60, 0.953)")};
+  border: none;
+  border-radius: 4px;
+  box-shadow: ${({ disabled }) => (disabled ? "none" : "0 0 2px #dbc9ed")};
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background-color: rgba(155, 154, 163, 0.7);
+    box-shadow: 0 2px 6px rgba(155, 154, 163, 0.4);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+    box-shadow: 0 1px 3px rgba(155, 154, 163, 0.3);
+  }
+
+  &:focus {
+    outline: 2px solid #9c65e8;
+    outline-offset: 2px;
+  }
+
+  @media screen and (max-width: 768px) {
+    min-width: 50px;
+    height: 28px;
+    font-size: 13px;
+    padding: 4px 10px;
+  }
+
+  @media (hover: none) {
+    &:hover {
+      background-color: rgba(155, 154, 163, 0.5);
+      box-shadow: 0 0 2px #dbc9ed;
+    }
+  }
+`;
+
+export const PageInfo = styled.span`
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
+  user-select: none;
+
+  @media screen and (max-width: 768px) {
+    font-size: 13px;
+    width: 100%;
+    text-align: center;
+  }
+`;
