@@ -1,5 +1,4 @@
-import { type FC, useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { type FC } from "react";
 import { ButtonContainer, ButtonTab } from "./tabs-styles";
 
 export type TabState = "default" | "hover" | "disabled";
@@ -10,18 +9,12 @@ export interface ITabsProps {
   onTabChange?: (index: number) => void;
 }
 
-export const Tab: FC<ITabsProps> = ({ labels, state = "default", onTabChange }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  // const navigate = useNavigate();
-
-  const handleWithClickOnTab = (index: number) => {
-    setActiveIndex(index);
-    if (onTabChange) {
-      onTabChange(index);
-    }
-    // navigate(`/v4/articles/tab/${labels[index]}`);
-  };
-
+export const Tab: FC<ITabsProps & { activeIndex: number }> = ({
+  labels,
+  state = "default",
+  onTabChange,
+  activeIndex = 0,
+}) => {
   if (!labels || labels.length === 0) {
     return <div>No labels for tabs provided</div>;
   }
@@ -34,7 +27,9 @@ export const Tab: FC<ITabsProps> = ({ labels, state = "default", onTabChange }) 
           $isActive={index === activeIndex}
           $state={state}
           disabled={state === "disabled"}
-          onClick={() => handleWithClickOnTab(index)}
+          onClick={() => {
+            if (onTabChange) onTabChange(index);
+          }}
         >
           {label}
         </ButtonTab>

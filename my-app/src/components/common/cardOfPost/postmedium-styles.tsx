@@ -12,7 +12,7 @@ export const StyledWrapperMedium = styled.div`
   border-radius: 10px;
   padding: 10px;
   box-sizing: border-box;
-  overflow-x: hidden;
+  overflow: hidden;
   box-shadow:
     0 6px 24px rgba(0, 0, 0, 0.15),
     0 1.5px 4px rgba(0, 0, 0, 0.06);
@@ -20,13 +20,13 @@ export const StyledWrapperMedium = styled.div`
 
   @media screen and (min-width: 320px) and (max-width: 768px) {
     width: 100%;
-    min-width: 320px;
     max-width: 500px;
     min-height: 420px;
   }
 
   @media screen and (min-width: 769px) and (max-width: 1200px) {
-    max-width: 380px;
+    width: 380px;
+    min-height: 440px;
   }
 
   @media screen and (min-width: 1200px) {
@@ -40,11 +40,12 @@ export const StyledWrapperMedium = styled.div`
 
 export const ImageDiv = styled.div`
   width: 100%;
-  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
   background: ${({ theme }) => (theme.mode === "dark" ? "#504d4d33" : "#FFFFFF")};
   color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
 
@@ -59,10 +60,12 @@ export const ImageDiv = styled.div`
 
   @media screen and (min-width: 320px) and (max-width: 768px) {
     max-width: 500px;
+    aspect-ratio: 3 / 2;
   }
 
   @media screen and (min-width: 769px) and (max-width: 1200px) {
     max-width: 420px;
+    aspect-ratio: 16 / 10;
   }
 
   @media screen and (min-width: 1024px) {
@@ -78,9 +81,10 @@ export const ImageDiv = styled.div`
 
   & img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
-    border-radius: 6px;
+    object-position: center;
+    border-radius: 4px;
   }
 `;
 
@@ -93,7 +97,7 @@ export const ContentDiv = styled.div`
   width: 100%;
   text-align: center;
   background: ${({ theme }) => (theme.mode === "dark" ? "#504d4d33" : "#FFFFFF")};
-  flex: 1;
+  flex-grow: 1;
 `;
 
 export const SpanWithDate = styled.span`

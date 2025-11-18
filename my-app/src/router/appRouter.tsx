@@ -30,8 +30,16 @@ export const router = createBrowserRouter([
     element: <GuestPage />, //
   },
   {
-    path: PATHS.ARTICLE_PAGE,
+    path: "/articles/:id",
     element: <SinglePostPage />,
+  },
+  {
+    path: "/news/:id",
+    element: <SinglePostPage />,
+  },
+  {
+    path: "/myBlogs/tab/:tabLabel",
+    element: <MainPage />,
   },
 ]);
 // main page - страница со статьями, start page - гостевая страница

@@ -24,4 +24,6 @@ body {
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
+  background: ${({ theme }) => (theme.mode === "dark" ? "#222" : "rgb(255, 255, 255)")};
+  color: ${({ theme }) => (theme.mode === "dark" ? "#fff" : "#100f0f")};
 }

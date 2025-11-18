@@ -5,6 +5,7 @@ import {
   StyledWrapperExtended,
   TitleBlock,
 } from "./post-extended-styles";
+import MockImageExtended from "../../../assets/ExtendedDefault.jpg";
 
 export interface ExtendedPost {
   id?: string | undefined;
@@ -22,10 +23,19 @@ export const PostCardExtended: FC<{ post: ExtendedPost }> = ({ post }) => {
       <TitleBlock>{title} </TitleBlock>
       {image ? (
         <ExtendedImageDiv>
-          <img src={image} alt={title} onClick={onClick} style={{ cursor: "pointer" }} />
+          <img
+            src={image}
+            alt={title}
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = MockImageExtended;
+            }}
+            onClick={onClick}
+            style={{ cursor: "pointer" }}
+          />
         </ExtendedImageDiv>
       ) : (
-        <p>Default caption</p>
+        <img src={MockImageExtended} alt="Default preview" />
       )}
       <ContentContainer>{text}</ContentContainer>
     </StyledWrapperExtended>

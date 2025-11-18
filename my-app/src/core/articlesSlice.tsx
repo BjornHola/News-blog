@@ -2,18 +2,18 @@ import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/tool
 import type { RootState } from "./store";
 
 // 1 article type
-interface Article {
+export interface Article {
   id: number;
   title: string;
   summary: string;
-  url: string;
+  url?: string;
   image_url: string;
-  news_site: string;
+  news_site?: string;
   published_at: string;
 }
 
 // api data - response
-interface ArticlesResponse {
+export interface ArticlesResponse {
   count: number;
   next: string | null;
   previous: string | null;
@@ -21,7 +21,7 @@ interface ArticlesResponse {
 }
 
 // state
-interface ArticlesState {
+export interface ArticlesState {
   articles: Article[];
   loading: boolean;
   error: string | null;
