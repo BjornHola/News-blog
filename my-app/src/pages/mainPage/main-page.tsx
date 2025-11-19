@@ -20,7 +20,7 @@ import { PostCardMedium } from "../../components/common/cardOfPost/index-postmed
 import { Footer } from "../../layout/footer/index-footer";
 import { SortButton } from "../../components/common/SortButtons/index.-sortButtons";
 import { CustomDropdown } from "../../components/common/Select/index-select";
-import { SelectItems } from "../../components/common/Select/constants";
+import { SelectItems, type SortType } from "../../components/common/Select/constants";
 import { useIsMobile } from "../../utils/hooks/resizeWindow";
 import { sortButtonItems } from "../../components/common/SortButtons/constants";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks/storehooks";
@@ -44,7 +44,7 @@ import {
 
 export const MainPage: FC = () => {
   // select + buttons -sort/filter
-  const [currentValue, setCurrentValue] = useState(SelectItems[0]);
+  const [currentValue, setCurrentValue] = useState(SelectItems[0]); // "Title: A-Z"
   const [sortValue, setSortValue] = useState(sortButtonItems[0]);
   // sort-buttons
   const handleSortChange = (idx: number) => {
@@ -60,19 +60,18 @@ export const MainPage: FC = () => {
   const maxArticlesPage = 3;
   const maxNewsPage = 3;
 
-  // navigation over tabs
+  // navigation over tabs - extract from params ans define active tab
   const labels = ["articles", "news"];
   const { tabLabel } = useParams<{ tabLabel: string }>();
 
-  //define active tab to provide search and throw props to header
+  //define active tab to provide search and throw props to header(?)
   function toActiveTabLabel(label: unknown): "articles" | "news" {
     return label === "news" ? "news" : "articles";
   }
   const activeTabLabelFromTabsOrUrl: "articles" | "news" = toActiveTabLabel(tabLabel);
   const activeTabIndex = labels.indexOf(activeTabLabelFromTabsOrUrl);
-  const navigate = useNavigate();
 
-  // const activeTabLabel: "articles" | "news" = tabLabel === "news" ? "news" : "articles";
+  const navigate = useNavigate();
 
   // store
   // get all articles
@@ -104,6 +103,24 @@ export const MainPage: FC = () => {
     dispatch(clearErrorInNews());
     dispatch(fetchNews({ limit: 12, offset: 0 }));
   };
+
+  //sorting by headline
+  function sortByTitle(arr: Array<News> | Array<Article>, sortType: SortType) {
+    const copy = Array.isArray(arr) ? [...arr] : [];
+    if (sortType === "Title: Z-A")
+      return copy.sort((a, b) =>
+        (b.title || "").localeCompare(a.title || "", "en", { ignorePunctuation: true }),
+      );
+    if (sortType === "Title: A-Z")
+      return copy.sort((a, b) =>
+        (a.title || "").localeCompare(b.title || "", "en", { ignorePunctuation: true }),
+      );
+    return copy;
+  }
+
+  const sortedArticles = sortByTitle(articles, currentValue as SortType);
+  console.log(sortedArticles.map((a) => a.title)); //
+  const sortedNews = sortByTitle(news, currentValue as SortType);
 
   // articles
   if (loading) {
@@ -164,13 +181,21 @@ export const MainPage: FC = () => {
         <SelectBlock>
           <CustomDropdown
             options={SelectItems}
-            onChange={(_, val) => setCurrentValue(val)}
+            onChange={(_, val) => {
+              console.log("Switch sort:", val); //
+              setCurrentValue(val);
+            }}
             value={currentValue}
+            disabled={
+              Boolean(loading) ||
+              Boolean(error) ||
+              (activeTabIndex === 0 ? articles.length === 0 : news.length === 0)
+            }
           />
         </SelectBlock>
       </SectionButtonSort>
       <NewsBlock>
-        {(activeTabIndex === 0 ? articles : news).map((post: Article | News) => (
+        {(activeTabIndex === 0 ? sortedArticles : sortedNews).map((post: Article | News) => (
           <Link
             to={activeTabIndex === 0 ? `/articles/${post.id}` : `/news/${post.id}`}
             key={post.id}
