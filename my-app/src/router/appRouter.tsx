@@ -10,8 +10,8 @@ import { SearchPage } from "../pages/searchPage/search-page";
 
 export const router = createBrowserRouter([
   {
-    path: PATHS.HOME,
-    element: <MainPage />, //
+    path: PATHS.MAIN_PAGE,
+    element: <MainPage />,
   },
 
   {
@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
   },
   {
     path: PATHS.GUEST_PAGE,
-    element: <GuestPage />, //
+    element: <GuestPage />,
   },
   {
     path: "/articles/:id",
@@ -44,4 +44,3 @@ export const router = createBrowserRouter([
   },
   { path: PATHS.SEARCH_PAGE, element: <SearchPage /> },
 ]);
-// main page - страница со статьями, start page - гостевая страница

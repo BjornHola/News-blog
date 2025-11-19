@@ -1,6 +1,8 @@
 import type { FC, MouseEvent } from "react";
 import { ButtonAccountNamed, ButtonAccountNamedMobile } from "./button-account-styles";
 import { useIsMobile } from "../../../utils/hooks/resizeWindow";
+import { useNavigate } from "react-router-dom";
+import { PATHS } from "../../../router/configs";
 
 interface IButtonAccountProps {
   type?: "submit" | "button" | "reset";
@@ -9,7 +11,11 @@ interface IButtonAccountProps {
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
-export const ButtonAccount: FC<IButtonAccountProps> = ({ label, onClick }) => {
+export const ButtonAccount: FC<IButtonAccountProps> = ({ label }) => {
+  const navigate = useNavigate();
+  const handleWithAccountButtonClick = () => {
+    navigate(PATHS.GUEST_PAGE);
+  };
   const isMobile = useIsMobile(768);
   if (!label) return "defaultUser";
   function getUserName(label: string) {
@@ -23,11 +29,13 @@ export const ButtonAccount: FC<IButtonAccountProps> = ({ label, onClick }) => {
   }
 
   return !isMobile ? (
-    <ButtonAccountNamed onClick={onClick} tabIndex={1}>
+    <ButtonAccountNamed onClick={handleWithAccountButtonClick} tabIndex={1}>
       <span>{getUserName(label)}</span>
       <span>{label}</span>
     </ButtonAccountNamed>
   ) : (
-    <ButtonAccountNamedMobile onClick={onClick}>{getUserName(label)}</ButtonAccountNamedMobile>
+    <ButtonAccountNamedMobile onClick={handleWithAccountButtonClick}>
+      {getUserName(label)}
+    </ButtonAccountNamedMobile>
   );
 };

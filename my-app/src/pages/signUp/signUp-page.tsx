@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/common/Buttons/button-index";
 import { Title } from "../../components/common/Titles/title-index";
 import { Form } from "../../forms/index-form";
@@ -6,6 +7,10 @@ import { Header } from "../../layout/header/index-header";
 import { WrapperForButton, WrapperForContent, WrapperForSignUp } from "./signUp-styles";
 
 export const SignUpPage = () => {
+  const navigate = useNavigate();
+  const HandleWithButtonHome = () => {
+    navigate("/");
+  };
   return (
     <WrapperForSignUp>
       <WrapperForContent>
@@ -16,7 +21,7 @@ export const SignUpPage = () => {
             label="Back to home"
             dataState={"default"}
             tabIndex={0}
-            // onClick={clickOnButton}
+            onClick={HandleWithButtonHome}
           />
           <Title content={"Sign up"} />
         </WrapperForButton>
