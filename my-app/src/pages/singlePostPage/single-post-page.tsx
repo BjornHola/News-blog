@@ -151,4 +151,3 @@ export const SinglePostPage: FC = () => {
     </WrapperForSinglePostPage>
   );
 };
-// MediumPostsBlock - ?
