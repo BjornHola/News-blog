@@ -35,7 +35,7 @@ export const PopupMenu = ({ onClose }: IPopupMenuProps) => {
           <StyledNavLink to={PATHS.SIGN_IN}>
             <MenuItem>Sign In</MenuItem>
           </StyledNavLink>
-          <StyledNavLink to={PATHS.HOME}>
+          <StyledNavLink to={PATHS.MAIN_PAGE}>
             <MenuItem>My blog</MenuItem>
           </StyledNavLink>
         </MenuContent>

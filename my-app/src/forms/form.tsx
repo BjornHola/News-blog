@@ -2,6 +2,8 @@ import { type FC, type ChangeEvent, type FocusEvent, useState } from "react";
 import { StyledForm, StyledLink, TextUnderForm, StyledText, ResetLink } from "./form-styles";
 import { Input } from "../components/common/inputs/index-input";
 import { Button } from "../components/common/Buttons/button-index";
+import { Link } from "react-router-dom";
+import { PATHS } from "../router/configs";
 
 export const Form: FC<{ autocomplete: "on" | "off" }> = ({ autocomplete }) => {
   const setIdForm: () => string = () => {
@@ -81,8 +83,10 @@ export const Form: FC<{ autocomplete: "on" | "off" }> = ({ autocomplete }) => {
       return;
     }
     console.log("Form submitted", { username, email, password });
+    setUsername("");
+    setEmail("");
+    setPassword("");
   };
-
   return (
     <StyledForm
       action=""
@@ -135,7 +139,9 @@ export const Form: FC<{ autocomplete: "on" | "off" }> = ({ autocomplete }) => {
       <Button label="Submit" dataState="default" variant="primary" />
       <TextUnderForm>
         <StyledText> Don't you have account yet?</StyledText>
-        <StyledLink>Sign Up</StyledLink>
+        <Link to={PATHS.SIGN_UP}>
+          <StyledLink>Sign Up</StyledLink>
+        </Link>
       </TextUnderForm>
     </StyledForm>
   );
