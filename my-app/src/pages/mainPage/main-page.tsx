@@ -22,7 +22,7 @@ import { SortButton } from "../../components/common/SortButtons/index.-sortButto
 import { CustomDropdown } from "../../components/common/Select/index-select";
 import { SelectItems, type SortType } from "../../components/common/Select/constants";
 import { useIsMobile } from "../../utils/hooks/resizeWindow";
-import { sortButtonItems } from "../../components/common/SortButtons/constants";
+import { sortButtonItems, type FilterValues } from "../../components/common/SortButtons/constants";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks/storehooks";
 import {
   clearError,
@@ -45,7 +45,7 @@ import {
 export const MainPage: FC = () => {
   // select + buttons -sort/filter
   const [currentValue, setCurrentValue] = useState(SelectItems[0]); // "Title: A-Z"
-  const [sortValue, setSortValue] = useState(sortButtonItems[0]);
+  const [sortValue, setSortValue] = useState(sortButtonItems[0]); // Day Week Month Year
   // sort-buttons
   const handleSortChange = (idx: number) => {
     setSortValue(sortButtonItems[idx]);
@@ -122,6 +122,53 @@ export const MainPage: FC = () => {
   console.log(sortedArticles.map((a) => a.title)); //
   const sortedNews = sortByTitle(news, currentValue as SortType);
 
+  // filtering articles/news
+  function filterByDate<T extends { published_at: string }>(
+    items: Array<T>,
+    filterValue: FilterValues | null,
+  ): Array<T> {
+    if (filterValue === null) return items;
+
+    const now = new Date();
+    let limit: Date;
+
+    switch (filterValue) {
+      case "Day":
+        limit = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+        break;
+      case "Week":
+        limit = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+        break;
+      case "Month":
+        limit = new Date(now);
+        limit.setMonth(now.getMonth() - 1);
+        break;
+      case "Year":
+        limit = new Date(now);
+        limit.setFullYear(now.getFullYear() - 1);
+        break;
+      default:
+        limit = new Date(0);
+    }
+    return items.filter((item) => new Date(item.published_at) >= limit);
+  }
+
+  // active sortButton state
+  const [activeFilter, setActiveFilter] = useState<FilterValues | null>(null);
+  const handleActiveFilter = (idx: number | null) => {
+    if (idx === null) {
+      setActiveFilter(null);
+    } else {
+      setActiveFilter(sortButtonItems[idx] as "Day" | "Week" | "Month" | "Year");
+    }
+  };
+
+  // filter values of Array of News and Articles
+  const filteredArticles = filterByDate(sortedArticles, activeFilter);
+  console.log(filteredArticles); //
+  const filteredNews = filterByDate(sortedNews, activeFilter);
+  console.log(filteredNews); //
+
   // articles
   if (loading) {
     return (
@@ -175,7 +222,7 @@ export const MainPage: FC = () => {
           </SelectBlock>
         ) : (
           <ButtonBlock>
-            <SortButton labels={sortButtonItems} state="default" onClick={handleSortChange} />
+            <SortButton labels={sortButtonItems} state="default" onClick={handleActiveFilter} />
           </ButtonBlock>
         )}
         <SelectBlock>
@@ -195,7 +242,7 @@ export const MainPage: FC = () => {
         </SelectBlock>
       </SectionButtonSort>
       <NewsBlock>
-        {(activeTabIndex === 0 ? sortedArticles : sortedNews).map((post: Article | News) => (
+        {(activeTabIndex === 0 ? filteredArticles : filteredNews).map((post: Article | News) => (
           <Link
             to={activeTabIndex === 0 ? `/articles/${post.id}` : `/news/${post.id}`}
             key={post.id}
@@ -208,7 +255,7 @@ export const MainPage: FC = () => {
                     year: "numeric",
                     month: "long",
                     day: "numeric",
-                  }) || "November 19, 2025",
+                  }) || `${new Date(Date.now())}`,
                 title: post.title || "Default title",
               }}
             />
