@@ -6,14 +6,14 @@ export type SortButtonState = "default" | "hover" | "disabled";
 export interface ISortButtonProps {
   labels: Array<string>;
   state: SortButtonState;
-  onClick?: (index: number) => void;
+  onClick?: (index: number | null) => void;
   tabIndex?: number;
 }
 
 export const SortButton: FC<ISortButtonProps> = ({ labels, state, onClick, tabIndex }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const handleWithClick = (index: number) => {
+  const handleWithClick = (index: number | null) => {
     setActiveIndex(index);
     if (onClick) onClick(index);
   };

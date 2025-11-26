@@ -7,7 +7,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "my-project/*.{js,jsx,ts,tsx}": "cd my-project && eslint --fix",
-    "my-project/*.{js,jsx,ts,tsx,json,css,md}": "cd my-project && prettier --write"
+    "*.{js,jsx,ts,tsx}": "eslint --fix",
+  "*.{js,jsx,ts,tsx,json,css,md}": "prettier --write"
   }
 }
