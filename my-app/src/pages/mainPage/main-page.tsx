@@ -147,6 +147,7 @@ export const MainPage: FC = () => {
         limit = new Date(now);
         limit.setFullYear(now.getFullYear() - 1);
         break;
+      case "All":
       default:
         limit = new Date(0);
     }
@@ -159,7 +160,7 @@ export const MainPage: FC = () => {
     if (idx === null) {
       setActiveFilter(null);
     } else {
-      setActiveFilter(sortButtonItems[idx] as "Day" | "Week" | "Month" | "Year");
+      setActiveFilter(sortButtonItems[idx] as "All" | "Day" | "Week" | "Month" | "Year");
     }
   };
 
@@ -168,6 +169,10 @@ export const MainPage: FC = () => {
   console.log(filteredArticles); //
   const filteredNews = filterByDate(sortedNews, activeFilter);
   console.log(filteredNews); //
+  // filter for mobile version
+  const handleFilterChange = (_idx: number, value: string) => {
+    setActiveFilter(value as FilterValues);
+  };
 
   // articles
   if (loading) {
@@ -216,8 +221,13 @@ export const MainPage: FC = () => {
           <SelectBlock>
             <CustomDropdown
               options={sortButtonItems}
-              value={sortValue}
-              onChange={handleSortChange}
+              value={activeFilter}
+              onChange={handleFilterChange}
+              disabled={
+                Boolean(loading) ||
+                Boolean(error) ||
+                (activeTabIndex === 0 ? articles.length === 0 : news.length === 0)
+              }
             />
           </SelectBlock>
         ) : (
