@@ -45,11 +45,7 @@ import {
 export const MainPage: FC = () => {
   // select + buttons -sort/filter
   const [currentValue, setCurrentValue] = useState(SelectItems[0]); // "Title: A-Z"
-  const [sortValue, setSortValue] = useState(sortButtonItems[0]); // Day Week Month Year
-  // sort-buttons
-  const handleSortChange = (idx: number) => {
-    setSortValue(sortButtonItems[idx]);
-  };
+
   //mobile state up to 768 =>  search UI
   const isMobile = useIsMobile(768);
   // state - number of the page to render (pagination)
@@ -154,7 +150,7 @@ export const MainPage: FC = () => {
     return items.filter((item) => new Date(item.published_at) >= limit);
   }
 
-  // active sortButton state
+  // active sortButton state // All Day Week Month Year
   const [activeFilter, setActiveFilter] = useState<FilterValues | null>(null);
   const handleActiveFilter = (idx: number | null) => {
     if (idx === null) {
@@ -166,9 +162,7 @@ export const MainPage: FC = () => {
 
   // filter values of Array of News and Articles
   const filteredArticles = filterByDate(sortedArticles, activeFilter);
-  console.log(filteredArticles); //
   const filteredNews = filterByDate(sortedNews, activeFilter);
-  console.log(filteredNews); //
   // filter for mobile version
   const handleFilterChange = (_idx: number, value: string) => {
     setActiveFilter(value as FilterValues);
